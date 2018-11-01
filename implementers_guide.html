@@ -1,0 +1,551 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Khronos API Implementers Guide</title><link rel="stylesheet" type="text/css" href="igstyle.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><meta name="description" content="Records guidelines to be followed by implementers of Khronos Group APIs."></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div lang="en" class="article" title="Khronos API Implementers Guide"><div class="titlepage"><div><div><h2 class="title"><a name="idm58020940496"></a>Khronos API Implementers Guide</h2></div><div><p class="edition">Fourth Edition</p></div><div><p class="releaseinfo"></p></div><div><div class="authorgroup"><div class="editor"><h4 class="editedby">Edited by</h4><h3 class="editor"><span class="firstname">Mark</span> <span class="surname">Callow</span></h3><div class="affiliation"><span class="orgname">HI Corporation<br></span></div></div></div></div><div><p class="copyright">Copyright © 2009 - 2012 The Khronos Group Inc.</p></div><div><a href="legal.html">Legal Notice</a></div><div><div class="abstract" title="Abstract"><p class="title"><b>Abstract</b></p><p>Records guidelines to be followed by implementers of Khronos Group
+      <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">APIs.</a></em></p></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#introduction">1. Introduction</a></span></dt><dt><span class="section"><a href="#hfandlibs">2. Header Files and Libraries</a></span></dt><dd><dl><dt><span class="section"><a href="#uncontrolled">2.1. Uncontrolled Platforms (e.g. <span class="trademark">GNU</span><sup>®</sup>/<span class="trademark">Linux</span><sup>®</sup>, <span class="trademark">Windows</span><sup>®</sup>, Windows CE)</a></span></dt><dt><span class="section"><a href="#controlled">2.2. Vendor Controlled Platforms (e.g. Android, BREW, iOS, Mac OS
+      X)</a></span></dt></dl></dd><dt><span class="section"><a href="#implementationnotes">3. Implementation Notes</a></span></dt><dd><dl><dt><span class="section"><a href="#ncl">3.1. OpenCL</a></span></dt><dt><span class="section"><a href="#negl">3.2. EGL</a></span></dt></dl></dd><dt><span class="section"><a href="#conftest">4. Conformance Testing</a></span></dt><dt><span class="appendix"><a href="#idm58020326896">A. Glossary</a></span></dt><dt><span class="appendix"><a href="#idm58020303664">B. Document History</a></span></dt><dt><span class="appendix"><a href="#idm58020289792">C. Acknowledgements</a></span></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>1. <a href="#headers">Header File Names and Locations</a></dt><dt>2. <a href="#libnames">Recommended Library Names</a></dt><dt>3. <a href="#idm58020503456">GL on GNU/Linux, Unix and other platforms using the X
+            Window System</a></dt><dt>4. <a href="#idm58020474960">GL on Mac OS X</a></dt><dt>5. <a href="#idm58020443584">GL on Microsoft Windows</a></dt></dl></div><div class="mediaobject" align="center"><img src="Khronos-1600-Transparent-May07.png" align="middle" width="270" alt="Khronos Group logo"></div><div class="section" title="1. Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="introduction"></a>1. Introduction</h2></div></div></div><p>This document provides guidelines for <a class="firstterm" href="#gls_implementer"><em class="firstterm">implementers </em></a>
+    of OpenGL ES, OpenVG and other <a class="firstterm" href="#gls_api"><em class="firstterm">API</em></a> standards specified by the Khronos
+    Group. The aim of these hints is to provide commonality between
+    implementations to ease the logistical problems faced by developers using
+    multiple different implementations of an <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em>.</p><p>One of the primary goals is to allow an application binary to run on
+    top of multiple different implementations of an <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> on the same platform.</p><p><em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementers</a></em> are strongly urged to
+    comply with these guidelines.</p><p>This document contains links to several Khronos specifications and
+    header files at versions current at the time of publication. Readers may
+    wish to check the <a class="ulink" href="http://www.khronos.org/registry/" target="_top">Khronos
+    registry</a> for post-publication updates to these files.</p><p></p></div><div class="section" title="2. Header Files and Libraries"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="hfandlibs"></a>2. Header Files and Libraries</h2></div></div></div><div class="section" title="2.1. Uncontrolled Platforms (e.g. GNU®/Linux®, Windows®, Windows CE)"><div class="titlepage"><div><div><h3 class="title"><a name="uncontrolled"></a>2.1. Uncontrolled Platforms (e.g. <span class="trademark">GNU</span><sup>®</sup>/<span class="trademark">Linux</span><sup>®</sup>, <span class="trademark">Windows</span><sup>®</sup>, Windows CE)</h3></div></div></div><p>When providing implementations for platforms where the <a class="firstterm" href="#gls_vendor"><em class="firstterm">platform vendor</em></a> does not
+      provide or has not yet established a standard <em class="glossterm"><a class="glossterm" href="#gls_abi" title="Application Binary Interface"><a class="firstterm" href="#gls_abi"><em class="firstterm">Application Binary
+      Interface</em></a></a></em> for an <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em>, <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">implementers</a></em> are strongly urged to
+      comply with the following recommendations. <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendors</a></em>
+      newly establishing <em class="glossterm"><a class="glossterm" href="#gls_abi" title="Application Binary Interface">ABI</a></em>
+      specifications for their platforms are also strongly urged to comply
+      with these recommendations.</p><div class="section" title="2.1.1. Header Files"><div class="titlepage"><div><div><h4 class="title"><a name="headerfiles"></a>2.1.1. Header Files</h4></div></div></div><div class="section" title="2.1.1.1. General"><div class="titlepage"><div><div><h5 class="title"><a name="hfgeneral"></a>2.1.1.1. General</h5></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementers</a></em> are strongly
+              encouraged to use the standard header files (<code class="filename">egl.h</code>, <code class="filename">gl.h</code>, <code class="filename">kd.h</code>, etc.) for each specification
+              that are provided by Khronos and listed in <a class="xref" href="#headers" title="Table 1. Header File Names and Locations">Table 1, “Header File Names and Locations”</a>. Links are provided there.</p></li><li class="listitem"><p>Portable and non-portable definitions are separated into
+              &lt;api&gt;.h and &lt;api&gt;platform.h files, e.g., <code class="filename">gl.h</code> and <code class="filename">glplatform.h</code>. Implementers should
+              not need to change the former; they are strongly discouraged
+              from doing so. They should rarely need to change the latter as
+              it already contains definitions for most common
+              platforms.</p></li><li class="listitem"><p>Khronos provides a common underlying <code class="filename">khrplatform.h</code> defining sets of
+              base types, linkage specifications and function-call
+              specifications covering most common platforms. Many
+              Khronos-provided &lt;api&gt;platform.h and other header files
+              include <code class="filename">khrplatform.h</code>
+              and use its definitions as the basis for their own. <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementers</a></em> should rarely
+              need to change this file.</p></li><li class="listitem"><p>For most <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">APIs</a></em>, functions and enumerants for
+              extensions registered with the Khronos Extension Registry are
+              declared and defined in a Khronos-provided &lt;api&gt;ext.h
+              file, e.g, <code class="filename">glext.h</code>.
+              Exceptions are noted below. These header files can be used even
+              if the implementation doesn't provide a particular extension
+              since applications must query the presence of extensions at run
+              time.</p></li><li class="listitem"><p>Functions and enumerants for unregistered <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">implementer</a></em> extensions
+              should be declared and defined in an <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">implementer's</a></em> own header
+              file. Follow the extension writing and naming rules given in
+              <a class="ulink" href="http://www.opengl.org/registry/doc/rules.html" target="_top"><em class="citetitle">How
+              to Create Khronos API Extensions</em></a>. Use
+              enumerant values obtained from the Khronos Extension Registry,
+              as explained in <a class="ulink" href="http://www.opengl.org/registry/doc/enums.html" target="_top"><em class="citetitle">OpenGL
+              Enumerant Allocation Policies</em></a>. Implementers
+              are strongly encouraged to register their extensions even if
+              they are the only vendor.</p></li><li class="listitem"><p>Some <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">APIs</a></em> define optional utility
+              libraries. Functions and enumerants for these are declared and
+              defined in Khronos-provided header files, e.g., <code class="filename">glu.h</code>. For some other <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">APIs</a></em>, header file
+              names are reserved for use by future utility libraries.</p></li><li class="listitem"><p>Header files for a given <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> are packaged in an
+              API-specific folder, e.g., <code class="filename">GLES</code>. Folder names are listed in
+              <a class="xref" href="#headers" title="Table 1. Header File Names and Locations">Table 1, “Header File Names and Locations”</a> All API specific folders should be
+              placed in a common parent folder.</p></li><li class="listitem"><p>Consider contributing any header file changes back to
+              Khronos so that others may benefit from your expertise. Contact
+              the relevant working group and, on approval, update the files in
+              the Khronos Subversion tree.</p></li><li class="listitem"><p>Use the function-call convention defined for the platform
+              in the Khronos-provided &lt;api&gt;platform.h, if a definition
+              exists for the platform in question.</p></li><li class="listitem"><p>If you make your own header files use the names given in
+              <a class="xref" href="#headers" title="Table 1. Header File Names and Locations">Table 1, “Header File Names and Locations”</a>.</p></li><li class="listitem"><p>If the platform is Windows or WindowsCE, make sure your
+              header files are suitable for use with <a class="firstterm" href="#gls_mfc"><em class="firstterm"><acronym class="acronym">MFC</acronym></em></a>. Make sure
+              that any base API types referred to are preceded by
+              <code class="code">::</code>. For example you need to refer to <code class="code">::GetDC(0)</code> because several Microsoft
+              Foundation Classes have their own <code class="code">GetDC(void)</code> methods.</p></li><li class="listitem"><p>When including one header in another, include the parent
+              directory name. For example when including <code class="filename">eglplatform.h</code> in <code class="filename">egl.h</code> use <code class="code">#include &lt;EGL/eglplatform.h&gt;</code>. Do not
+              use <code class="code">#include &lt;eglplatform.h&gt;</code>
+              because it forces application makefiles to specify 2 different
+              <em class="parameter"><code>-I&lt;path&gt;</code></em> options to
+              find both include files.</p></li></ul></div><div class="table"><a name="headers"></a><p class="title"><b>Table 1. Header File Names and Locations</b></p><div class="table-contents"><table summary="Header File Names and Locations" border="1"><colgroup><col align="left" class="c1"><col align="left" class="c2"><col align="left" class="c3"><col align="left" class="c4"><col align="left" class="c5"></colgroup><thead><tr><th align="left">API</th><th align="left">Location</th><th align="left">Header Files</th><th align="left">How to include</th><th align="left">Provider</th></tr></thead><tbody><tr><td rowspan="4" align="left" valign="top">OpenCL</td><td rowspan="4" align="left" valign="top"><code class="filename">CL</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/cl/api/1.0/cl.h" target="_top">cl.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;CL/cl.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/cl/api/1.0/cl_gl.h" target="_top">cl_gl.h</a></code><sup>[<a name="idm58020854400" href="#ftn.idm58020854400" class="footnote">a</a>]</sup></td><td align="left"><code class="code">#include
+                  &lt;CL/cl_gl.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/cl/api/1.0/cl_platform.h" target="_top">cl_platform.h</a></code></td><td align="left">Included by <code class="filename">cl.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename">cl_ext.h</code></td><td align="left"><code class="code">#include
+                  &lt;CL/cl_ext.h&gt;</code></td><td align="left">Khronos, once extensions exist</td></tr><tr><td rowspan="3" align="left" valign="top">EGL 1.x</td><td rowspan="3" align="left" valign="top"><code class="filename">EGL</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/egl/api/egl.h" target="_top">egl.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;EGL/egl.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/egl/api/eglplatform.h" target="_top">eglplatform.h</a></code>
+                  <sup>[<a name="idm58020838608" href="#ftn.idm58020838608" class="footnote">b</a>]</sup></td><td align="left">Included by <code class="filename">egl.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/egl/api/eglext.h" target="_top">eglext.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;EGL/eglext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td rowspan="3" align="left"><span class="trademark">OpenGL</span><sup>®</sup> 3.x &amp; 4.x
+                  Compatibility</td><td rowspan="3" align="left"><code class="filename">GL</code></td><td align="left"><code class="filename">gl.h</code></td><td align="left"><code class="code">#include
+                  &lt;GL/gl.h&gt;</code></td><td align="left">Platform or Implementer</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.opengl.org/registry/api/glext.h" target="_top">glext.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GL/glext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename">glu.h</code><sup>[<a name="glu_h" href="#ftn.glu_h" class="footnote">c</a>]</sup></td><td align="left"><code class="code">#include
+                  &lt;GL/glu.h&gt;</code></td><td align="left">Implementer</td></tr><tr><td rowspan="3" align="left"><span class="trademark">OpenGL</span><sup>®</sup> 3.1+ Core</td><td rowspan="3" align="left"><code class="filename">GL</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.opengl.org/registry/api/glcorearb.h" target="_top">glcorearb.h</a></code><sup>[<a name="idm58020815504" href="#ftn.idm58020815504" class="footnote">d</a>]</sup></td><td align="left"><code class="code">#include &lt;GL/glcorearb.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename">glcoreext.h</code><sup>[<a name="idm58020812432" href="#ftn.idm58020812432" class="footnote">e</a>]</sup></td><td align="left"><code class="code">#include
+                  &lt;GL/glcoreext.h&gt;</code></td><td align="left">Khronos / Implementer</td></tr><tr><td align="left"><code class="filename">glu.h</code><sup>[<a href="#ftn.glu_h" class="footnoteref">c</a>]</sup></td><td align="left"><code class="code">#include
+                  &lt;GL/glu.h&gt;</code></td><td align="left">Implementer</td></tr><tr><td rowspan="4" align="left" valign="top"><span class="trademark">OpenGL</span><sup>®</sup> ES 1.x</td><td rowspan="4" align="left" valign="top"><code class="filename">GLES</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/1.1/gl.h" target="_top">gl.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GLES/gl.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/1.1/glplatform.h" target="_top">glplatform.h</a></code>
+                  <sup>[<a name="idm58020800064" href="#ftn.idm58020800064" class="footnote">f</a>]</sup></td><td align="left">Included by <code class="filename">gl.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/1.1/glext.h" target="_top">glext.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GLES/glext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename">glu.h</code></td><td colspan="2" align="center">Reserved for
+                  future use</td></tr><tr><td rowspan="4" align="left" valign="top"><span class="trademark">OpenGL</span><sup>®</sup> ES 2.x</td><td rowspan="4" align="left" valign="top"><code class="filename">GLES2</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/2.0/gl2.h" target="_top">gl2.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GLES2/gl2.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/2.0/gl2platform.h" target="_top">gl2platform.h</a></code></td><td align="left">Included by <code class="filename">gl2.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/2.0/gl2ext.h" target="_top">gl2ext.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GLES2/gl2ext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename">glu{,2}.h</code></td><td colspan="2" align="center">Reserved for
+                  future use</td></tr><tr><td rowspan="4" align="left" valign="top"><span class="trademark">OpenGL</span><sup>®</sup> ES 3.x</td><td rowspan="4" align="left" valign="top"><code class="filename">GLES3</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/3.0/gl3.h" target="_top">gl3.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GLES3/gl3.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/3.0/gl3platform.h" target="_top">gl3platform.h</a></code></td><td align="left">Included by <code class="filename">gl3.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/3.0/gl3ext.h" target="_top">gl3ext.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;GLES3/gl3ext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename">glu{,3}.h</code></td><td colspan="2" align="center">Reserved for
+                  future use</td></tr><tr><td align="left">*</td><td align="left"><code class="filename">KHR</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/egl/api/khrplatform.h" target="_top">khrplatform.h</a></code></td><td align="left">Included by header files which use it. Never included
+                  directly by applications.</td><td align="left">Khronos</td></tr><tr><td rowspan="2" align="left" valign="top">OpenKODE 1.x</td><td rowspan="2" align="left" valign="top"><code class="filename">KD</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/kode/api/kd.h" target="_top">kd.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;KD/kd.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/kode/api/kdplatform.h" target="_top">kdplatform.h</a></code></td><td align="left">Included by <code class="filename">kd.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td rowspan="3" align="left">OpenMAX AL</td><td rowspan="3" align="left"><code class="filename">OMXAL</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/omxal/api/1.1/OpenMAXAL.h" target="_top">OpenMAXAL.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;OMXAL/OpenMAXAL.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/omxal/api/1.1/OpenMAXAL_Platform.h" target="_top">OpenMAXAL_Platform.h</a></code></td><td align="left">Included by <code class="filename">OpenMAXAL.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/omxal/api/1.1/OpenMAXAL_IID.c" target="_top">OpenMAXAL_IID.c</a></code><sup>[<a name="fniid" href="#ftn.fniid" class="footnote">g</a>]</sup></td><td align="left">Compile and link with the application</td><td align="left">Khronos</td></tr><tr><td rowspan="3" align="left">OpenSL ES</td><td rowspan="3" align="left"><code class="filename">SLES</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/sles/api/1.1/OpenSLES.h" target="_top">OpenSLES.h</a></code></td><td align="left"><code class="code">#include &lt;SLES/OpenSLES.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/sles/api/1.1/OpenSLES_Platform.h" target="_top">OpenSLES_Platform.h</a></code></td><td align="left">Included by <code class="filename">OpenSLES.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/sles/api/1.1/OpenSLES_IID.c" target="_top">OpenSLES_IID.c</a></code><sup>[<a href="#ftn.fniid" class="footnoteref">g</a>]</sup></td><td align="left">Compile and link with the application</td><td align="left">Khronos</td></tr><tr><td rowspan="4" align="left" valign="top">OpenVG 1.x</td><td rowspan="4" align="left" valign="top"><code class="filename">VG</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/vg/api/1.1/openvg.h" target="_top">openvg.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;VG/openvg.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/vg/api/1.1/vgplatform.h" target="_top">vgplatform.h</a></code></td><td align="left">Included by <code class="filename">openvg.h</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/vg/api/1.1/vgext.h" target="_top">vgext.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;VG/vgext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/vg/api/1.1/vgu.h" target="_top">vgu.h</a></code>
+                  <sup>[<a name="idm58020708000" href="#ftn.idm58020708000" class="footnote">h</a>]</sup></td><td align="left"><code class="code">#include
+                  &lt;VG/vgu.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td rowspan="6" align="left" valign="top">OpenWF</td><td rowspan="6" align="left" valign="top"><code class="filename">WF</code></td><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/wf/api/1.0/openwfc.1.0.headers.zip" target="_top">wfc.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;WF/wfc.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/wf/api/1.0/openwfc.1.0.headers.zip" target="_top">wfcplatform.h</a></code></td><td align="left">Included by <code class="filename">wfc.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename">wfcext.h</code></td><td align="left"><code class="code">#include
+                  &lt;WF/wfcext.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/wf/api/1.0/openwfd.1.0.headers.zip" target="_top">wfd.h</a></code></td><td align="left"><code class="code">#include
+                  &lt;WF/wfd.h&gt;</code></td><td align="left">Khronos</td></tr><tr><td align="left"><code class="filename"><a class="ulink" href="http://www.khronos.org/registry/wf/api/1.0/openwfd.1.0.headers.zip" target="_top">wfdplatform.h</a></code></td><td align="left">included by <code class="filename">wfd.h</code></td><td align="left">Khronos, possibly modified by <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendor</a></em> or <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer</a></em></td></tr><tr><td align="left"><code class="filename">wfdext.h</code></td><td align="left"><code class="code">#include
+                  &lt;WF/wfdext.h&gt;</code></td><td align="left">Khronos</td></tr></tbody></table><div class="footnotes"><div class="footnote"><p><sup>[<a id="ftn.idm58020854400" href="#idm58020854400" class="para">a</a>] </sup>A file declaring the functions used to integrate
+                      OpenCL and OpenGL objects.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020838608" href="#idm58020838608" class="para">b</a>] </sup>Early EGL implementations used <code class="filename">egltypes.h</code> instead of the
+                      now recommended <code class="filename">eglplatform.h</code> .</p></div><div class="footnote"><p><sup>[<a id="ftn.glu_h" href="#glu_h" class="para">c</a>] </sup>Required, if the OpenGL utility library is
+                      provided.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020815504" href="#idm58020815504" class="para">d</a>] </sup>Includes only interfaces for the Core profile of
+                      OpenGL and ARB extensions.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020812432" href="#idm58020812432" class="para">e</a>] </sup>Does not currently exist as there are no known
+                      vendor extensions to the Core profile.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020800064" href="#idm58020800064" class="para">f</a>] </sup><code class="filename">glplatform.h</code> does not
+                      exist in many early implementations of OpenGL ES 1.x.
+                      Platform dependent declarations were included directly
+                      in <code class="filename">gl.h </code>.</p></div><div class="footnote"><p><sup>[<a id="ftn.fniid" href="#fniid" class="para">g</a>] </sup>This file contains unique interface IDs for all
+                      API interfaces. These IDs have been automatically
+                      generated. Neither implementers nor application
+                      developers should edit these interface IDs.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020708000" href="#idm58020708000" class="para">h</a>] </sup>Required, if the OpenVG utility library is
+                      provided.</p></div></div></div></div><br class="table-break"></div><div class="section" title="2.1.1.2. Notes"><div class="titlepage"><div><div><h5 class="title"><a name="hfnotes"></a>2.1.1.2. Notes</h5></div></div></div><div class="section" title="2.1.1.2.1. General"><div class="titlepage"><div><div><h6 class="title"><a name="hfngeneral"></a>2.1.1.2.1. General</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>To find the include files, use appropriate compiler
+                options in the makefiles for your sample programs; e.g.
+                <em class="parameter"><code>-I</code></em> (gcc, linux) or
+                <em class="parameter"><code>/I</code></em> (Visual C++).</p></li><li class="listitem"><p>Given the different <em class="glossterm"><a class="glossterm" href="#gls_ide" title="Integrated Development Environment">IDEs</a></em> &amp; compilers people use,
+                especially on Windows, it is not possible to recommend a
+                system location in which to place these include files. Where
+                obvious choices exist Khronos recommends implementers take
+                advantage of them.</p></li><li class="listitem"><p>In particular, GNU/Linux implementations should follow
+                the <a class="ulink" href="http://www.pathname.com/fhs/" target="_top"><em class="citetitle">Filesystem
+                Hierarchy Standard</em> </a> for the location of
+                headers and libraries.</p></li></ul></div></div><div class="section" title="2.1.1.2.2. EGL"><div class="titlepage"><div><div><h6 class="title"><a name="hfegl"></a>2.1.1.2.2. EGL</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Implementers may need to modify <code class="filename">eglplatform.h</code>. In particular the
+                <span class="type">eglNativeDisplayType</span>,
+                <span class="type">eglNativeWindowType</span>, and
+                <span class="type">eglNativePixmapType</span> typedefs must be defined as
+                appropriate for the platform (typically, they will be
+                typedef'ed to corresponding types in the native window
+                system). Developer documentation should mention the
+                correspondence so that developers know what parameters to pass
+                to <code class="function">eglCreateWindowSurface</code>,
+                <code class="function">eglCreatePixmapSurface</code>, and
+                <code class="function">eglCopyBuffers</code>. Documentation should also
+                describe the format of the <em class="parameter"><code>display_id</code></em> parameter to
+                <code class="function">eglGetDisplay</code>, since this is a
+                platform-specific identifier. See <a class="xref" href="#negldisplay" title="3.2.1. EGLDisplay">Section 3.2.1, “EGLDisplay”</a> for more details.</p></li><li class="listitem"><p>Do not include <code class="filename">gl.h</code> in <code class="filename">egl.h</code>.</p></li></ul></div></div><div class="section" title="2.1.1.2.3. OpenGL"><div class="titlepage"><div><div><h6 class="title"><a name="hfogl"></a>2.1.1.2.3. OpenGL</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For historical reasons both Windows and GNU/Linux
+                include an old version of <code class="filename">gl.h</code>, that is
+                beyond the control of Khronos, containing OpenGL 1.2
+                interfaces. All post-OpenGL 1.2 interfaces of the
+                Compatibility profile of the most recent version of OpenGL are
+                defined in the Khronos-provided
+                <code class="filename">glext.h</code>.</p></li><li class="listitem"><p><code class="filename">glcorearb.h</code>
+                defines all the interfaces of the most recent core profile of
+                OpenGL and any ARB extensions to it. It does not include
+                interfaces that have been deprecated and removed from core
+                OpenGL. Vendor extensions to the Core profile should be
+                defined in <code class="filename">glcoreext.h</code>
+                but implementers should keep in mind that people using the
+                Core profile probably have more concern about portability than
+                most coders and may want to avoid using extensions.</p></li><li class="listitem"><p>Implementations supporting only the Core profile should
+                provide the header files listed for OpenGL 3.1+ .
+                Implementations supporting the Compatibility profile should
+                provide the header files listed for OpenGL 3.x &amp; 4.x
+                following the conventions documented in <a class="xref" href="#ctrldogl" title="2.2.2. OpenGL">Section 2.2.2, “OpenGL”</a>.</p></li><li class="listitem"><p>When introducing OpenGL to a platform for the first
+                time, only the Core profile is required. The Compatibility
+                profile is optional and not recommended.</p></li><li class="listitem"><p>Khronos recommends using EGL as the window abstraction
+                layer, when introducing OpenGL to a platform. Follow the EGL
+                guidelines given herein.</p></li></ul></div></div><div class="section" title="2.1.1.2.4. OpenGL ES 1.x"><div class="titlepage"><div><div><h6 class="title"><a name="hfgles1x"></a>2.1.1.2.4. OpenGL ES 1.x</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For compatibility with GLES 1.0 implementations, include
+                in <code class="filename">GLES</code> a special
+                <code class="filename"><a class="ulink" href="http://www.khronos.org/registry/gles/api/1.1/egl.h" target="_top">egl.h</a></code>
+                containing the following: </p><div class="informalexample"><pre class="programlisting">
+#include &lt;EGL/egl.h&gt;
+#include &lt;GLES/gl.h&gt;</pre></div><p>This is because many early OpenGL ES 1.0
+                implementations included <code class="filename">gl.h</code> in <code class="filename">egl.h</code> so many existing
+                applications only include <code class="filename">egl.h</code> .</p></li><li class="listitem"><p>The name <code class="filename">glu.h</code>
+                is reserved for future use by the Khronos Group.</p></li></ul></div></div><div class="section" title="2.1.1.2.5. OpenGL ES 2.x"><div class="titlepage"><div><div><h6 class="title"><a name="hfgles2x"></a>2.1.1.2.5. OpenGL ES 2.x</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The names <code class="filename">glu{,2}.h</code> are reserved for
+                future use by the Khronos Group.</p></li></ul></div></div><div class="section" title="2.1.1.2.6. OpenGL ES 3.x"><div class="titlepage"><div><div><h6 class="title"><a name="hfgles3x"></a>2.1.1.2.6. OpenGL ES 3.x</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The names <code class="filename">glu{,3}.h</code> are reserved for
+                future use by the Khronos Group.</p></li></ul></div></div><div class="section" title="2.1.1.2.7. OpenKODE"><div class="titlepage"><div><div><h6 class="title"><a name="hfopenkode"></a>2.1.1.2.7. OpenKODE</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>As noted earlier, <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">implementers</a></em> are
+                strongly encouraged to use the Khronos provided header files.
+                <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementers</a></em>, who are
+                creating their own <code class="filename">kd.h</code> or need to modify <code class="filename">kdplatform.h</code>, are urged to code
+                them such that they include as few as possible of the
+                platform's include files, and to avoid declaring C and POSIX
+                standard functions. This will ease the creation of portable
+                OpenKODE applications, and help stop non-portable code being
+                added accidentally.</p></li><li class="listitem"><p>Each OpenKODE extension is defined in its own header
+                file. Khronos provided header files for each ratified
+                extension are available in the <em class="citetitle">Extension Headers</em> subsection of
+                the <a class="ulink" href="http://www.khronos.org/registry/kode/" target="_top">OpenKODE
+                registry</a>.</p></li></ul></div></div><div class="section" title="2.1.1.2.8. OpenWF"><div class="titlepage"><div><div><h6 class="title"><a name="hfopenwf"></a>2.1.1.2.8. OpenWF</h6></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The OpenWF API is divided into two parts: Composition
+                and Display Control. Separate header files must be provided
+                for each part as indicated in <a class="xref" href="#headers" title="Table 1. Header File Names and Locations">Table 1, “Header File Names and Locations”</a>.</p></li></ul></div></div></div></div><div class="section" title="2.1.2. Libraries"><div class="titlepage"><div><div><h4 class="title"><a name="libraries"></a>2.1.2. Libraries</h4></div></div></div><div class="section" title="2.1.2.1. Packaging"><div class="titlepage"><div><div><h5 class="title"><a name="lpackaging"></a>2.1.2.1. Packaging</h5></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>It is highly desirable to implement all <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> entry points as function
+              calls. However in OpenKODE Core, macros or in-lines may be used
+              instead of function calls provided the rules in <a class="ulink" href="http://www.khronos.org/registry/kode/specs/openkode.1.0.2.pdf#nameddest=corefunctions" target="_top">Section
+              4.3 OpenKODE Core functions</a> of the <a class="ulink" href="http://www.khronos.org/registry/kode/specs/openkode.1.0.2.pdf" target="_top">OpenKODE
+              specification</a> are followed:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>When calling a function or macro, each argument must
+                  be evaluated exactly once (although the order of evaluation
+                  is undefined).</p></li><li class="listitem"><p>It must be possible to take the address of a
+                  function.</p></li></ul></div><p>These rules apply except where individually noted in the
+              specification.</p></li><li class="listitem"><p>Except in cases where macros are allowed or versioned
+              symbol naming is recommended (e.g., <a class="link" href="#ncl_sn" title="3.1.2. Versioned Symbol Naming Convention">OpenCL symbol naming</a>), ensure the <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> function names exported by
+              your lib &amp; dll files match the function names specified by
+              the Khronos standard for the <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> you are implementing.</p></li><li class="listitem"><p>The entry points for each <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> must be packaged in separate
+              libraries. Recommended library names are given in <a class="xref" href="#libnames" title="Table 2. Recommended Library Names">Table 2, “Recommended Library Names”</a>.</p></li><li class="listitem"><p>However to provide backward compatibility for existing
+              applications, two OpenGL ES 1.1 libraries should be provided:
+              one with and one without the EGL entry points.</p><p><span class="emphasis"><em>Note: There are extant implementations of the
+              dual OpenGL ES libraries demonstrating this is possible on
+              Symbian, GNU/Linux, Win32 and WinCE.</em></span></p><p>For OpenGL ES 2.x and 3.x, only a library without EGL
+              entry points is needed.</p></li><li class="listitem"><p>To allow interoperability through EGL with other Khronos
+              <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">APIs</a></em>, implementers may
+              want to provide an additional OpenGL library, that can be used
+              with EGL, on platforms having existing GL <em class="glossterm"><a class="glossterm" href="#gls_abi" title="Application Binary Interface">ABI</a></em> conventions. In such a case,
+              use the name recommended below for the OpenGL library without
+              EGL.</p></li><li class="listitem"><p>When introducing OpenGL to a platform, implementers are
+              recommended to provide two OpenGL libraries similarly to the
+              OpenGL ES 1.1 case.</p></li></ul></div></div><div class="section" title="2.1.2.2. Naming"><div class="titlepage"><div><div><h5 class="title"><a name="lnaming"></a>2.1.2.2. Naming</h5></div></div></div><p>Khronos recommends the library names shown in <a class="xref" href="#libnames" title="Table 2. Recommended Library Names">Table 2, “Recommended Library Names”</a>. The table lists the names developers would
+          typically supply to a link command. The actual file names may vary
+          according to the platform and tools in use.</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <span class="command"><strong>ld</strong></span> command on GNU/Linux and Unix
+                systems prefaces the base name with <code class="filename">lib</code>
+                and appends the extensions .<code class="filename">so</code> and
+                <code class="filename">.a</code> in that order when searching for the
+                library. So the full name of the library file must be
+                <code class="filename">lib&lt;base name&gt;.{so,a}</code> depending on
+                whether it is a shared or static library.</p></li><li class="listitem"><p>Neither the Microsoft Visual Studio linker nor the ARM
+                RealView linker offer any special treatment for library names;
+                the extension for a standard library or import library on
+                Windows is <code class="filename">.lib</code>, while that for a dynamic
+                link library is <code class="filename">.dll</code>.</p></li><li class="listitem"><p>On Windows, if the implementer will provide both 32- and
+                64-bit libraries, it is necessary to disambiguate by adding a
+                suffix of 32 or 64 to the base name.</p></li></ul></div><p>Khronos therefore recommends that library names be
+          of the form <code class="filename">lib&lt;base
+          name&gt;[&lt;nbits&gt;].&lt;platform specific
+          extension&gt;</code>; &lt;nbits&gt; being possibly needed only
+          on the Windows platform.</p><div class="table"><a name="libnames"></a><p class="title"><b>Table 2. Recommended Library Names</b></p><div class="table-contents"><table summary="Recommended Library Names" border="1"><colgroup><col align="left" class="c1"><col align="left" class="c2"><col align="left" class="c3"></colgroup><thead><tr><th align="left">API</th><th align="left">Part</th><th align="left">Base Name</th></tr></thead><tbody><tr><td align="left">OpenCL</td><td align="left"> </td><td align="left"><code class="filename">OpenCL</code></td></tr><tr><td align="left">EGL</td><td align="left"> </td><td align="left"><code class="filename">EGL</code></td></tr><tr><td rowspan="2" align="left" valign="top">OpenGL 3.x &amp;
+                  4.x</td><td align="left">OpenGL<sup>[<a name="idm58020581488" href="#ftn.idm58020581488" class="footnote">a</a>]</sup></td><td align="left"><code class="filename">GL</code></td></tr><tr><td align="left">Utilities</td><td align="left"><code class="filename">GLU</code></td></tr><tr><td rowspan="4" align="left" valign="top">OpenGL ES 1.x</td><td align="left">Core with EGL (Common Profile)</td><td align="left"><code class="filename">GLES_CM</code><sup>[<a name="fnreq" href="#ftn.fnreq" class="footnote">b</a>]</sup> <sup>[<a name="fndepr" href="#ftn.fndepr" class="footnote">c</a>]</sup></td></tr><tr><td align="left">Core with EGL (Lite Profile)</td><td align="left"><code class="filename">GLES_CL</code><sup>[<a href="#ftn.fnreq" class="footnoteref">b</a>]</sup> <sup>[<a href="#ftn.fndepr" class="footnoteref">c</a>]</sup></td></tr><tr><td align="left">Core without EGL</td><td align="left"><code class="filename">GLESv1_C[LM]</code><sup>[<a name="fnsprev" href="#ftn.fnsprev" class="footnote">d</a>]</sup></td></tr><tr><td align="left">Utilities</td><td align="left"><code class="filename">GLUESv1</code><sup>[<a name="fnreserved" href="#ftn.fnreserved" class="footnote">e</a>]</sup></td></tr><tr><td rowspan="2" align="left" valign="top">OpenGL ES 2.x</td><td align="left">Core without EGL</td><td align="left"><code class="filename">GLESv2</code></td></tr><tr><td align="left">Utilities</td><td align="left"><code class="filename">GLUESv2</code><sup>[<a href="#ftn.fnreserved" class="footnoteref">e</a>]</sup></td></tr><tr><td rowspan="2" align="left" valign="top">OpenGL ES 3.x</td><td align="left">Core without EGL</td><td align="left"><code class="filename">GLESv2</code><sup>[<a name="idm58020557104" href="#ftn.idm58020557104" class="footnote">f</a>]</sup></td></tr><tr><td align="left">Utilities</td><td align="left"><code class="filename">GLUESv2</code><sup>[<a href="#ftn.fnreserved" class="footnoteref">e</a>]</sup></td></tr><tr><td align="left">OpenKODE</td><td align="left">Core</td><td align="left"><code class="filename">KD</code></td></tr><tr><td align="left">OpenMAX AL</td><td align="left"> </td><td align="left"><code class="filename">OpenMAXAL</code></td></tr><tr><td align="left">OpenSL ES</td><td align="left"> </td><td align="left"><code class="filename">OpenSLES</code></td></tr><tr><td rowspan="2" align="left" valign="top">OpenVG</td><td align="left">Core</td><td align="left"><code class="filename">OpenVG</code></td></tr><tr><td align="left">Utilities (when present)</td><td align="left"><code class="filename">OpenVGU</code></td></tr><tr><td rowspan="2" align="left" valign="top">OpenWF</td><td align="left">Composition</td><td align="left"><code class="filename">WFC</code></td></tr><tr><td align="left">Display</td><td align="left"><code class="filename">WFD</code></td></tr></tbody></table><div class="footnotes"><div class="footnote"><p><sup>[<a id="ftn.idm58020581488" href="#idm58020581488" class="para">a</a>] </sup>May contain Core or Compatibilty profile. See
+                      <a class="xref" href="#ctrldogl" title="2.2.2. OpenGL">Section 2.2.2, “OpenGL”</a> below.</p></div><div class="footnote"><p><sup>[<a id="ftn.fnreq" href="#fnreq" class="para">b</a>] </sup>These names are required for OpenGL ES 1.0 and the
+                      libraries must contain the EGL entry points as detailed
+                      in Chapter 8, <span class="emphasis"><em>Packaging</em></span>, of the
+                      OpenGL ES 1.0 specification.</p></div><div class="footnote"><p><sup>[<a id="ftn.fndepr" href="#fndepr" class="para">c</a>] </sup>These names are deprecated for OpenGL ES 1.1 and
+                      beyond and should only be used for a library that
+                      includes the EGL entry points in order to support legacy
+                      applications.</p></div><div class="footnote"><p><sup>[<a id="ftn.fnsprev" href="#fnsprev" class="para">d</a>] </sup>These alternate names for GL ES libraries that do
+                      not contain the EGL entry points were introduced
+                      starting at revision 1.1.09 of the OpenGL ES 1.1
+                      specification.</p></div><div class="footnote"><p><sup>[<a id="ftn.fnreserved" href="#fnreserved" class="para">e</a>] </sup>These names are reserved for future use by the
+                      Khronos Group.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020557104" href="#idm58020557104" class="para">f</a>] </sup>This is not a typo! The v2 name is retained in
+                      order that existing applications will continue to run
+                      after a system is upgraded to OpenGL ES 3 and avoid a
+                      myriad of potential linking issues when developing
+                      applications for both v2 &amp; v3.</p></div></div></div></div><br class="table-break"></div></div></div><div class="section" title="2.2. Vendor Controlled Platforms (e.g. Android, BREW, iOS, Mac OS X)"><div class="titlepage"><div><div><h3 class="title"><a name="controlled"></a>2.2. Vendor Controlled Platforms (e.g. Android, BREW, iOS, Mac OS
+      X)</h3></div></div></div><div class="section" title="2.2.1. General"><div class="titlepage"><div><div><h4 class="title"><a name="gencontrolled"></a>2.2.1. General</h4></div></div></div><p><em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">Vendors</a></em> of controlled platforms are
+        strongly urged to follow the recommendations given above for <a class="link" href="#uncontrolled" title="2.1. Uncontrolled Platforms (e.g. GNU®/Linux®, Windows®, Windows CE)"> Uncontrolled Platforms</a> when adding a
+        Khronos Group <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em> to their
+        platform.</p><p><em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementers</a></em> should follow any
+        linkage specifications established by the <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">platform vendor</a></em> .</p><div class="itemizedlist"><ul class="itemizedlist" type="opencircle"><li class="listitem" style="list-style-type: circle"><p>Use the header files, (e.g., for OpenGL ES, gl.h, glext.h
+            &amp; egl.h) provided by the <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">platform vendor</a></em>.</p></li><li class="listitem" style="list-style-type: circle"><p>Package header files in the same containing folder used by
+            the <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">platform
+            vendor</a></em>.</p></li><li class="listitem" style="list-style-type: circle"><p>Use the function names specified in those header
+            files.</p></li><li class="listitem" style="list-style-type: circle"><p>Use the function-call convention specified in those header
+            files.</p></li><li class="listitem" style="list-style-type: circle"><p>Implement all <em class="glossterm"><a class="glossterm" href="#gls_api" title="Application Programming Interface">API</a></em>
+            entry points in the same way as in the <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">vendor</a></em>-provided <a class="firstterm" href="#gls_abi"><em class="firstterm">ABI</em></a>. That is, functions should be
+            functions, in-line functions should be in-line functions and
+            macros should be macros.</p></li><li class="listitem" style="list-style-type: circle"><p>Use the library names specified by the <em class="glossterm"><a class="glossterm" href="#gls_vendor" title="Platform Vendor">platform vendor</a></em>.</p></li></ul></div></div><div class="section" title="2.2.2. OpenGL"><div class="titlepage"><div><div><h4 class="title"><a name="ctrldogl"></a>2.2.2. OpenGL</h4></div></div></div><p>Because of OpenGL's long history, a series of conventions have
+        been established, even for platforms which are not strictly controlled
+        by their vendors. This section documents the established conventions
+        for all common platforms. They should be followed by Implementers
+        supporting the Compatibility profile in order to provide the least
+        surprises to application developers. Implementers supporting only the
+        Core profile of OpenGL 3.1+ are encouraged to follow the guidelines
+        given in the preceding sections.</p><p>Platform <em class="glossterm"><a class="glossterm" href="#gls_sdk" title="Software Development Kit">SDKs</a></em> typically come with 2
+        OpenGL-related header files pre-installed:<code class="filename"> gl.h</code>, which defines the OpenGL
+        interfaces, and a header file that defines the interfaces to that
+        platform's window abstraction layer (e.g. <code class="filename">glx.h</code>) . These files are commonly
+        outdated, often having only OpenGL 1.2 interfaces. As these files are
+        outside the control of Khronos, Khronos provides <code class="filename">*ext.h</code> files which define newly added
+        functions and enums, such as those specified by OpenGL 4.x. Some
+        platform SDKs may also include <code class="filename">*ext.h</code> files. These can also be
+        outdated. Implementers are advised to use the Khronos provided
+        <code class="filename">*ext.h</code> files and supply these
+        with their <em class="glossterm"><a class="glossterm" href="#gls_sdk" title="Software Development Kit">SDKs</a></em>.</p><p>Implementers can choose to provide their own up-to-date
+        <code class="filename">gl.h</code>. Developer documentation
+        should explain how to ensure the compiler finds any updated or
+        implementation specific files.</p><p>With the exceptions noted in the tables below, all files are
+        packaged in the folder <code class="filename">GL</code>.</p><p>The following sections give details for each platform.</p><p>In order to allow interaction with other Khronos APIs,
+        implementers may wish to provide an EGL implementation, that supports
+        OpenGL, in addition to a platform's standard window abstraction layer.
+        In this case, EGL should be packaged in a separate library following
+        the guidelines given in <a class="xref" href="#uncontrolled" title="2.1. Uncontrolled Platforms (e.g. GNU®/Linux®, Windows®, Windows CE)">Section 2.1, “Uncontrolled Platforms (e.g. <span class="trademark">GNU</span><sup>®</sup>/<span class="trademark">Linux</span><sup>®</sup>, <span class="trademark">Windows</span><sup>®</sup>, Windows CE)”</a> above.
+        Implementers must ensure that an application can link with both the
+        OpenGL library and the EGL library without any errors arising from the
+        OpenGL library having entry points for the platform's standard window
+        abstraction layer.</p><div class="section" title="2.2.2.1. GNU®/Linux® and Unix®"><div class="titlepage"><div><div><h5 class="title"><a name="oglunix"></a>2.2.2.1. <span class="trademark">GNU</span><sup>®</sup>/<span class="trademark">Linux</span><sup>®</sup> and <span class="trademark">Unix</span><sup>®</sup></h5></div></div></div><p>Those implementing OpenGL on GNU/Linux or Unix systems should
+          follow the <a class="ulink" href="http://www.opengl.org/registry/ABI/" target="_top">OpenGL Application Binary
+          Interface for Linux</a> which has been approved by the <a class="ulink" href="http://www.linuxfoundation.org/en/LSB_Workgroup_Home_Page" target="_top">Linux
+          Standard Base Workgroup</a>. The file and library names given
+          below apply to any platform using the X Window System.</p><div class="table"><a name="idm58020503456"></a><p class="title"><b>Table 3. GL on GNU/Linux, Unix and other platforms using the X
+            Window System</b></p><div class="table-contents"><table summary="GL on GNU/Linux, Unix and other platforms using the X
+            Window System" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>Abstraction Layer</td><td colspan="3">GLX</td></tr><tr><td rowspan="5">Header Files</td><td rowspan="2">Core</td><td><code class="filename">gl.h</code></td><td>Mesa via X.org distributions of the X Window
+                  System</td></tr><tr><td><code class="filename"><a class="ulink" href="http://www.opengl.org/registry/api/glext.h" target="_top">glext.h</a></code></td><td>Khronos</td></tr><tr><td rowspan="2">Abstraction Layer</td><td><code class="filename">glx.h</code></td><td>Mesa via X.org</td></tr><tr><td><code class="filename"><a class="ulink" href="http://www.opengl.org/registry/api/glxext.h" target="_top">glxext.h</a></code></td><td>Khronos</td></tr><tr><td>Utility Library</td><td><code class="filename">glu.h</code></td><td>Mesa via X.org</td></tr><tr><td>Link Library Names</td><td colspan="3"><code class="filename">libGL.so</code>,
+                  <code class="filename">libGLU.so</code></td></tr><tr><td>Runtime Library Names</td><td colspan="3"><code class="filename">libGL.so.[134]</code>,<sup>[<a name="idm58020481984" href="#ftn.idm58020481984" class="footnote">a</a>]</sup><sup>[<a name="idm58020481184" href="#ftn.idm58020481184" class="footnote">b</a>]</sup> <code class="filename">libGLU.so.1</code></td></tr></tbody></table><div class="footnotes"><div class="footnote"><p><sup>[<a id="ftn.idm58020481984" href="#idm58020481984" class="para">a</a>] </sup>Per the above referenced ABI, libGL.so.1 contains
+                      a minimum of OpenGL 1.2, GLX 1.3 and
+                      ARB_multitexture.</p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020481184" href="#idm58020481184" class="para">b</a>] </sup>The following is subject to change; it will be
+                      confirmed at the X.Org Developers Conference in Sep.
+                      2012. libGL.so.[34] should contain only the OpenGL 3.x
+                      or 4.x entry points. Applications must link with libEGL
+                      for the abstraction layer.</p></div></div></div></div><br class="table-break"></div><div class="section" title="2.2.2.2. Mac® OS X"><div class="titlepage"><div><div><h5 class="title"><a name="oglmacos"></a>2.2.2.2. <span class="trademark">Mac</span><sup>®</sup> OS X</h5></div></div></div><p>OpenGL is the primary 3D rendering API for Mac OS X so is a
+          core part of the system. Information is presented here more for
+          completeness than from any expectation that third party
+          implementations will appear. For a complete description of Apple's
+          implementation see the <a class="ulink" href="http://developer.apple.com/DOCUMENTATION/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/chapter_1_section_1.html" target="_top">OpenGL
+          Programming Guide for Mac OS X</a>. Primarily aimed at
+          developers, it provides a good description of the structure of
+          OpenGL in Mac OS X.</p><p>Apple's SDK includes up-to-date gl.h and glext.h header files
+          that track their implementation. These headers contain all GL 3.x
+          features and are used regardless of the vendor of the underlying
+          GPU. The headers are packaged together with the libraries in the
+          OpenGL Framework.</p><div class="table"><a name="idm58020474960"></a><p class="title"><b>Table 4. GL on Mac OS X</b></p><div class="table-contents"><table summary="GL on Mac OS X" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>Abstraction Layers</td><td colspan="3">AGL, CGL, GLX, NSOpenGL</td></tr><tr><td rowspan="7">Header Files</td><td rowspan="2">Core Profile</td><td><code class="filename">gl.h</code><sup>[<a name="oglff" href="#ftn.oglff" class="footnote">a</a>]</sup></td><td>Apple SDK</td></tr><tr><td><code class="filename">glext.h</code><sup>[<a href="#ftn.oglff" class="footnoteref">a</a>]</sup></td><td>Apple SDK</td></tr><tr><td>AGL</td><td><code class="filename">agl.h</code><sup>[<a name="idm58020461296" href="#ftn.idm58020461296" class="footnote">b</a>]</sup></td><td>Apple SDK</td></tr><tr><td>CGL</td><td><code class="filename">OpenGL.h</code><sup>[<a href="#ftn.oglff" class="footnoteref">a</a>]</sup></td><td>Apple SDK</td></tr><tr><td rowspan="2"><code class="filename">GLX</code></td><td><code class="filename">glx.h</code><sup>[<a href="#ftn.oglff" class="footnoteref">a</a>]</sup></td><td>Apple SDK</td></tr><tr><td><code class="filename">glxext.h</code><sup>[<a href="#ftn.oglff" class="footnoteref">a</a>]</sup></td><td>Apple SDK</td></tr><tr><td>NSOpenGL</td><td><code class="filename">AppKit.framework</code></td><td>Apple SDK</td></tr><tr><td>Library Name</td><td colspan="3">Applications link with the OpenGL
+                  framework.</td></tr></tbody></table><div class="footnotes"><div class="footnote"><p><sup>[<a id="ftn.oglff" href="#oglff" class="para">a</a>] </sup>Packaged in <code class="filename">OpenGL.framework</code></p></div><div class="footnote"><p><sup>[<a id="ftn.idm58020461296" href="#idm58020461296" class="para">b</a>] </sup>Packaged in
+                      <code class="filename">AGL.framework</code></p></div></div></div></div><br class="table-break"></div><div class="section" title="2.2.2.3. Microsoft Windows®"><div class="titlepage"><div><div><h5 class="title"><a name="oglwin"></a>2.2.2.3. <span class="trademark">Microsoft
+          Windows</span><sup>®</sup></h5></div></div></div><p>Those creating an implementation for Windows will need to
+          provide an <em class="glossterm">Installable Client Driver</em> (ICD).
+          See <a class="ulink" href="http://msdn.microsoft.com/en-us/library/aa477537.aspx" target="_top">Loading
+          an OpenGL Installable Client Driver</a> and <span class="trademark"><a class="ulink" href="http://www.opengl.org/pipeline/article/vol003_7/" target="_top">OpenGL and
+          Windows Vista</a></span><sup>™</sup> for more information.</p><div class="table"><a name="idm58020443584"></a><p class="title"><b>Table 5. GL on Microsoft Windows</b></p><div class="table-contents"><table summary="GL on Microsoft Windows" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>Abstraction Layer</td><td colspan="3">WGL</td></tr><tr><td rowspan="5">Header Files</td><td>OpenGL 1.2</td><td><code class="filename">gl.h</code></td><td>Microsoft Platform SDK</td></tr><tr><td>All post 1.2 entry points as extensions</td><td><code class="filename"><a class="ulink" href="http://www.opengl.org/registry/api/glext.h" target="_top">glext.h</a></code></td><td>Khronos</td></tr><tr><td rowspan="2">Abstraction Layer</td><td><code class="filename">winGDI.h</code><sup>[<a name="idm58020430880" href="#ftn.idm58020430880" class="footnote">a</a>]</sup></td><td>Microsoft Platform SDK</td></tr><tr><td><code class="filename"><a class="ulink" href="http://www.opengl.org/registry/api/wglext.h" target="_top">wglext.h</a></code></td><td>Khronos</td></tr><tr><td>Utility Library</td><td><code class="filename">glu.h</code></td><td>Microsoft Platform SDK</td></tr><tr><td>Library Names</td><td colspan="3"><code class="filename">opengl&lt;nbits&gt;.{lib,dll}</code>,
+                  <code class="filename">glu&lt;nbits&gt;.{lib,dll}</code><sup>[<a name="fnnbits2" href="#ftn.fnnbits2" class="footnote">b</a>]</sup></td></tr></tbody></table><div class="footnotes"><div class="footnote"><p><sup>[<a id="ftn.idm58020430880" href="#idm58020430880" class="para">a</a>] </sup><code class="filename">winGDI.h</code>
+                      is a standard Windows' header file so is not packaged in
+                      the <code class="filename">GL</code>
+                      folder.</p></div><div class="footnote"><p><sup>[<a id="ftn.fnnbits2" href="#fnnbits2" class="para">b</a>] </sup>&lt;nbits&gt; is 32 or 64.</p></div></div></div></div><br class="table-break"></div></div></div></div><div class="section" title="3. Implementation Notes"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="implementationnotes"></a>3. Implementation Notes</h2></div></div></div><div class="section" title="3.1. OpenCL"><div class="titlepage"><div><div><h3 class="title"><a name="ncl"></a>3.1. OpenCL</h3></div></div></div><div class="section" title="3.1.1. Offline Compiler"><div class="titlepage"><div><div><h4 class="title"><a name="ncl_olc"></a>3.1.1. Offline Compiler</h4></div></div></div><p>OpenCL implementations may optionally include an off-line
+        compiler. When such a compiler is provided, the compiler must accept
+        the same options as the on-line compiler. These are specified in the
+        <a class="ulink" href="http://www.khronos.org/registry/cl/specs/opencl-1.0.29.pdf" target="_top">OpenCL
+        specification.</a> In addition, the compiler must support a
+        <span class="command"><strong><code class="option">-o &lt;file name&gt;</code></strong></span> option for
+        specifying the name of the output file and a <span class="command"><strong><code class="option">-b
+        &lt;machine&gt; </code></strong></span>option for specifying the target
+        machine. Khronos recommends that the string "clc" be used as the last
+        part of the compiler name as in, e.g., <span class="command"><strong>openclc</strong></span> or
+        <span class="command"><strong>&lt;your company name&gt;clc</strong></span>.</p></div><div class="section" title="3.1.2. Versioned Symbol Naming Convention"><div class="titlepage"><div><div><h4 class="title"><a name="ncl_sn"></a>3.1.2. Versioned Symbol Naming Convention</h4></div></div></div><p>OpenCL implementations on GNU/Linux should decorate the symbol
+        names in shared libraries with version numbers in the form
+        <code class="code"><span class="symbol">&lt;symbol&gt;@@OPENCL_&lt;version&gt;</span></code>
+        where <code class="code">&lt;version&gt;</code> is the version of the OpenCL
+        specification in which the symbol first appeared, e.g. 1.0, 1.1 or
+        2.0.</p></div></div><div class="section" title="3.2. EGL"><div class="titlepage"><div><div><h3 class="title"><a name="negl"></a>3.2. EGL</h3></div></div></div><div class="section" title="3.2.1. EGLDisplay"><div class="titlepage"><div><div><h4 class="title"><a name="negldisplay"></a>3.2.1. EGLDisplay</h4></div></div></div><p>The <a class="ulink" href="http://www.khronos.org/egl/" target="_top">EGL
+        specification</a> (Section 2.1.2 Displays) describes what an
+        <span class="type">EGLDisplay</span> represents. It states that,<span class="quote">“<span class="quote">In most
+        environments a display corresponds to a single physical
+        screen.</span>”</span>In reality most environments have only one
+        <span class="type">EGLDisplay</span> even when multiple physical screens are
+        supported. Many vendors match the <span class="type">EGLDisplay</span> to the
+        display driver implementation. So if there is only one display driver
+        on the system then the system has only one <span class="type">EGLDisplay</span>
+        (even though that one driver may be capable of driving more than 1
+        physical screen). For example, in the X Window System an
+        <span class="type">EGLDisplay</span> is likely to correspond to an X
+        <span class="type">Display</span>, not to an X <span class="type">Screen</span>.</p><p>The <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">implementer</a></em>
+        is free to choose what an <span class="type">EGLDisplay</span> represents. There
+        could be one <span class="type">EGLDisplay</span> per physical screen. There could
+        be one <span class="type">EGLDisplay</span> per graphics chip or graphics card.
+        There could be one <span class="type">EGLDisplay</span> per graphics driver vendor.
+        Or there could be one <span class="type">EGLDisplay</span> per system which
+        abstracts all available graphics hardware on the system into a single
+        <span class="type">EGLDisplay</span> handle.</p><p>While the implementer is free to choose the abstraction for the
+        <span class="type">EGLDisplay</span>, there are advantages to choosing the latter
+        approach where only a single <span class="type">EGLDisplay</span> exists on the
+        system. For example <span class="type">EGLImage</span>s and
+        <span class="type">EGLContext</span>s can only be shared within a single
+        <span class="type">EGLDisplay</span>. If there is more than one
+        <span class="type">EGLDisplay</span> on a system (e.g. one per physical screen) it
+        makes sharing resources between the two displays difficult or
+        impossible. Another example is that most applications are written to
+        use a single <span class="type">EGLDisplay</span> (the one corresponding to
+        <code class="constant">EGL_DEFAULT_DISPLAY</code>), and those apps will not
+        generally be able to take full advantage of systems with multiple
+        <span class="type">EGLDisplay</span>s.</p><p><span class="emphasis"><em>Recommendation: Have only one <span class="type">EGLDisplay</span>
+        per system, even if the system has multiple physical
+        screens.</em></span></p><p>If there is only one <span class="type">EGLDisplay</span> on a system, how
+        does that work with multiple physical screens? This is up to the
+        native window system (or OpenKODE). When an application wants to
+        render to a window on a particular physical screen, it should ensure
+        that the window it creates is displayed on that physical screen. The
+        mechanism is specific to the native window system (or possibly
+        OpenKODE if using <code class="function">kdCreateWindow()</code>). NOTE: There
+        is currently no way to tell OpenKODE upon which screen to open a
+        <span class="type">KDWindow</span>. An extension to allow this (by setting a "which
+        screen" window attribute between calling
+        <code class="function">kdCreateWindow()</code> and
+        <code class="function">kdRealizeWindow()</code>) may be available in the
+        future.</p></div><div class="section" title="3.2.2. EGLImage"><div class="titlepage"><div><div><h4 class="title"><a name="neglimage"></a>3.2.2. EGLImage</h4></div></div></div><div class="section" title="3.2.2.1. Introduction"><div class="titlepage"><div><div><h5 class="title"><a name="negliintro"></a>3.2.2.1. Introduction</h5></div></div></div><p>The various <span class="type">EGLImage</span> specifications describe how
+          <span class="type">EGLImage</span>s can be created and used. Some of the
+          implications made by the spec. are not immediately obvious. This
+          section attempts to clarify what choices may need to be made by an
+          implementation, and how an implementation addresses those choices.
+          The discussion in this section assumes that the reader has read at
+          least the <a class="ulink" href="http://www.khronos.org/registry/egl/extensions/KHR/image_base.txt" target="_top">EGL_KHR_image_base
+          specification</a>.</p></div><div class="section" title="3.2.2.2. Creation of EGLImages"><div class="titlepage"><div><div><h5 class="title"><a name="neglicreate"></a>3.2.2.2. Creation of <span class="type">EGLImage</span>s</h5></div></div></div><p><span class="type">EGLImage</span>s are created with the
+          <code class="function">eglCreateImageKHR</code> command. They can be created
+          from a variety of source image objects (e.g. OpenGL ES textures,
+          OpenVG <span class="type">VGImage</span>s, native pixmaps, etc).</p><p>Regardless of what type of object the <span class="type">EGLImage</span> is
+          created from, the specifications allow an implementation to
+          reallocate the memory which backs the <span class="type">EGLImage</span>.
+          However, there are a number of issues which make this very
+          difficult. For example, when one API is rendering to an
+          <span class="type">EGLImage</span> in one thread, another API is reading the same
+          <span class="type">EGLImage</span> in another thread, and a third thread calls a
+          function which creates a sibling object from the same
+          <span class="type">EGLImage</span>, then it is not clear that reallocation is
+          possible. If an implementation performs reallocation, it is likely
+          that it will have to do expensive locking around the use of
+          <span class="type">EGLImage</span>s which will hurt performance. Therefore
+          implementations may benefit from not performing reallocation once an
+          <span class="type">EGLImage</span> has been created.</p><p><span class="emphasis"><em>Recommendation: Implementations should avoid
+          reallocating the memory backing the <span class="type">EGLImage</span> after the
+          <span class="type">EGLImage</span> has been created.</em></span></p><p>When an <span class="type">EGLImage</span> is created from a client API
+          object, the context that contains the object is current to the
+          thread that called <code class="function">eglCreateImageKHR()</code>.
+          Therefore there are fewer issues with reallocating the memory at the
+          time the <span class="type">EGLImage</span> is created than when a sibling is
+          created from the <span class="type">EGLImage</span>.</p><p>Implementations of client APIs may have special requirements
+          for the memory accessed by the API. For example, there may be
+          alignment requirements, or requirements that memory come from a
+          specific range of physical addresses. These requirements may not be
+          the same for all client APIs on a particular system. An OpenGL ES
+          texture may have different alignment requirements than a VGImage,
+          for example.</p><p>In addition, there may be constraints on what internal formats
+          are accessible to certain APIs. An implementation may choose to
+          change the internal representation of the image when an
+          <span class="type">EGLImage</span> is created or when a sibling is created from
+          the <span class="type">EGLImage</span>, so long as this is transparent to the
+          application. For example, when an <span class="type">EGLImage</span> is created
+          from an OpenGL ES texture which was specified as RGBA 4444, the
+          implementation may choose to represent the <span class="type">EGLImage</span>
+          internally as an RGBA 8888 image even if the texture was originally
+          internally represented as RGBA 4444. However, in this case the
+          implementation must continue to treat the original texture as an
+          RGBA 4444 texture. This means that
+          <code class="function">glTexSubImage2D</code> with
+          <em class="parameter"><code>type</code></em>=<code class="constant">GL_UNSIGNED_BYTE</code>
+          must fail and <code class="function">glTexSubImage2D</code> with
+          <em class="parameter"><code>type</code></em>=<code class="constant">GL_UNSIGNED_SHORT_4_4_4_4</code>
+          must succeed. An implementation may choose to do this if, for
+          example, its OpenMAX renderer can support RGBA 8888 but not RGBA
+          4444. Alternatively, an implementation may choose to simply fail to
+          allow an <span class="type">EGLImage</span> represented internally as RGBA 4444
+          to be used as an OpenMAX buffer.</p><p>Generally an implementation may discard the contents of an
+          <span class="type">EGLImage</span> (and all associated client API objects) when
+          the <span class="type">EGLImage</span> is created or when any sibling object is
+          created from the <span class="type">EGLImage</span>. Therefore there is no need
+          to copy and/or convert the contents of a buffer, if the memory
+          backing the <span class="type">EGLImage</span> gets reallocated. Note that, if
+          the <span class="type">EGLImage</span> PRESERVED attribute is set to TRUE when
+          the <span class="type">EGLImage</span> is created, then the contents of the
+          <span class="type">EGLImage</span> (and all associated client API objects) do
+          have to be preserved when the <span class="type">EGLImage</span> is created and
+          when a sibling object is created from that <span class="type">EGLImage</span>. An
+          implementation may still reallocate the memory backing the
+          <span class="type">EGLImage</span> so long as it copies the contents of the old
+          memory to the new memory. An implementation may also opt to fail
+          creation of the <span class="type">EGLImage</span> or the sibling object if the
+          PRESERVED attribute is set to true.</p><p>If an implementation chooses not to reallocate the memory
+          backing the <span class="type">EGLImage</span> after it has been created, then it
+          must take extra care when first creating the <span class="type">EGLImage</span>
+          to ensure compatibility among APIs. For example, if the backing
+          memory is allocated using an alignment that is incompatible with an
+          OpenGL ES texture's requirements then that <span class="type">EGLImage</span>
+          cannot be used to create an OpenGL ES texture sibling. An
+          implementation has several choices for addressing this issue:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Fail to create the sibling object.</p></li><li class="listitem"><p>Reallocate the memory with the required alignment.</p></li><li class="listitem"><p>Ensure the allocation performed when the
+              <span class="type">EGLImage</span> is created is compatible with all (or as
+              many as possible) types of API objects.</p></li></ul></div><p>The third choice is the most desirable.</p><p><span class="emphasis"><em>Recommendation: When creating an
+          <span class="type">EGLImage,</span> an implementation should allocate (or
+          reallocate) memory backing the <span class="type">EGLImage</span> in such a way
+          that the memory is compatible with the largest possible set of API
+          objects.</em></span></p></div><div class="section" title="3.2.2.3. Creating EGLImage siblings from EGLImages"><div class="titlepage"><div><div><h5 class="title"><a name="neglisibling"></a>3.2.2.3. Creating <span class="type">EGLImage</span> siblings from
+          <span class="type">EGLImage</span>s</h5></div></div></div><p>As mentioned above, an implementation is free to reallocate
+          memory backing an <span class="type">EGLImage</span> whenever an
+          <span class="type">EGLImage</span> sibling is created from the
+          <span class="type">EGLImage</span> (or at any other time). The only requirement
+          is that any such reallocation be transparent to the application
+          (other than discarding the pixel values, if the PRESERVED attribute
+          is not set to TRUE). As discussed above, performing such
+          reallocation when a sibling is created from an <span class="type">EGLImage</span>
+          may be very difficult to implement robustly. Therefore the
+          recommendation is to avoid such reallocations when creating
+          siblings.</p><p>An implementation which never reallocates must fail any
+          attempt to create a sibling from an <span class="type">EGLImage</span> which has
+          an allocation incompatible with the sibling object being created.
+          This failure is acceptable according to the spec, but is still
+          undesirable. This is why it is important for the original memory
+          allocation to be compatible with as many types of API sibling
+          objects as possible.</p></div><div class="section" title="3.2.2.4. Delayed allocation of EGLImage buffer by siblings at bind time"><div class="titlepage"><div><div><h5 class="title"><a name="neglidelay"></a>3.2.2.4. Delayed allocation of <span class="type">EGLImage</span> buffer by
+          siblings at bind time</h5></div></div></div><p>Another option for allocating memory to back an
+          <span class="type">EGLImage</span> is to delay the allocation until one of the
+          <span class="type">EGLImage</span> sibling objects is actually used. This may
+          allow an implementation to be more flexible and/or perform better.
+          Since the pixels in an <span class="type">EGLImage</span> can be discarded when
+          any sibling object is created, it is advisable for applications
+          using <span class="type">EGLImage</span>s to create all sibling objects before
+          using (e.g. rendering to) any of the sibling objects. Delaying the
+          allocation of memory until one of the sibling objects is first used
+          allows the implementation to take into account what type of sibling
+          objects the <span class="type">EGLImage</span> has, and to allocate memory
+          appropriate to all of those sibling objects. Once any of the
+          siblings is actually used (e.g. rendered to) it becomes much more
+          difficult to reallocate the memory.</p><p>An application may still request that a sibling object be
+          created from the <span class="type">EGLImage</span> after one of the siblings has
+          been used, but an implementation may choose to fail to create the
+          sibling at this time, if the already allocated memory is
+          incompatible with the requested sibling. Such an implementation
+          would be maximally flexible about what siblings can be created, and
+          maximally efficient in its memory allocation, before any siblings
+          are used. After siblings are used the implementation may be less
+          flexible, but that is a less important case.</p></div><div class="section" title="3.2.2.5. Performance Notes"><div class="titlepage"><div><div><h5 class="title"><a name="negliperf"></a>3.2.2.5. Performance Notes</h5></div></div></div><p>Creation of an <span class="type">EGLImage</span> and its sibling objects
+          is not intended to be an operation which is performed frequently
+          (e.g. per frame). It is far more important to optimize the use of
+          <span class="type">EGLImage</span> siblings (binding sibling objects, rendering
+          to sibling objects, and reading from sibling objects (e.g. as
+          textures)) than to optimize their creation and destruction. Where
+          tradeoffs can be made between use performance and
+          creation/destruction performance, it is recommended that the choice
+          be made in favor of optimizing the use of sibling objects even if at
+          the expense of creation/destruction performance (within
+          reason).</p></div><div class="section" title="3.2.2.6. Developer Documentation"><div class="titlepage"><div><div><h5 class="title"><a name="neglidoc"></a>3.2.2.6. Developer Documentation</h5></div></div></div><p>Developer documentation should describe which types of
+          <span class="type">EGLImage</span> can be used for which types of API objects in
+          the implementation. For example, what are the restrictions (if any)
+          on a GLES texture in order for an <span class="type">EGLImage</span>, that is
+          created with it, to be used to create a VGImage sibling from that
+          <span class="type">EGLImage</span>? Are there any additional restrictions which
+          will guarantee optimal performance?</p><p>The documentation should also describe which operations are
+          likely to be slow (e.g. creating <span class="type">EGLImage</span>s or creating
+          <span class="type">EGLImage</span> siblings).</p></div></div></div></div><div class="section" title="4. Conformance Testing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="conftest"></a>4. Conformance Testing</h2></div></div></div><p>To claim your product is compliant with an API specification or use
+    its trademark and logo to market that product, your implementation must
+    pass the API's conformance test and the results must be submitted to the
+    Khronos Group. To do this, you must join Khronos as an Adopter which
+    requires a fee and a legal agreement. More information about the
+    conformance process and fees can be found on the <a class="ulink" href="http://www.khronos.org/adopters" target="_top">Khronos Adopters page</a>.
+    Adopters will receive an account giving them access to the relevant
+    API-specific Adopters area of the Khronos web site.</p><p>No fee or agreement is needed to implement a Khronos API or use it
+    in a product but you may not claim compliance and may not use its
+    trademark and logo.</p><p>API-specific Adopters areas provide links for downloading test
+    packages and submitting results. The test packages contain instructions
+    detailing the format and and required content of a Submission
+    Package.</p></div><div class="appendix" title="A. Glossary"><h2 class="title" style="clear: both"><a name="idm58020326896"></a>A. Glossary</h2><div class="glosslist"><dl><dt><a name="gls_abi"></a>Application Binary Interface (ABI)</dt><dd><p>The low-level interface between a compiled application program
+          and the operating system or its libraries.</p></dd><dt><a name="gls_api"></a>Application Programming Interface (API)</dt><dd><p>The source-code level interface between an application program
+          and the operating system or its libraries.</p></dd><dt><a name="gls_icd"></a>Installable Client Driver (ICD)</dt><dd><p>An OpenGL driver for Microsoft Windows that is identified by a
+          renderer string. The OpenGL runtime decides which ICD to run by
+          reading the contents of a specific registry entry. More details can
+          be found <a class="ulink" href="???" target="_top">here</a>.</p></dd><dt><a name="gls_ide"></a>Integrated Development Environment (IDE)</dt><dd><p>A tool for the purpose of software development in which, at a
+          minimum, an editor, compiler and debugger are integrated together
+          for ease of use.</p></dd><dt><a name="gls_implementer"></a>Implementer</dt><dd><p>A company or person who implements a Khronos API.</p></dd><dt><a name="gls_mfc"></a>Microsoft Foundation Classes (MFC)</dt><dd><p>A set of C++ utility classes provided by Microsoft
+          Corporation.</p></dd><dt><a name="gls_sdk"></a>Software Development Kit (SDK)</dt><dd><p>A kit containing the header files, libraries and documentation
+          required to develop software for some device or environment.</p></dd><dt><a name="gls_vendor"></a>Platform Vendor (Vendor)</dt><dd><p>A company providing an operating system platform that includes
+          an <em class="glossterm"><a class="glossterm" href="#gls_abi" title="Application Binary Interface">ABI</a></em> specification for
+          one or more Khronos APIs. E.g., Google (OpenGL ES &amp; EGL on
+          Android) and Qualcomm (OpenGL ES on BREW). A Vendor may also be an
+          <em class="glossterm"><a class="glossterm" href="#gls_implementer" title="Implementer">Implementer.</a></em></p></dd></dl></div></div><div class="appendix" title="B. Document History"><h2 class="title" style="clear: both"><a name="idm58020303664"></a>B. Document History</h2><div class="revhistory"><table border="0" width="100%" summary="Revision history"><tr><th align="left" valign="top" colspan="3"><b>Revision History</b></th></tr><tr><td align="left">Revision 4.1</td><td align="left">2013-12-03</td><td align="left">msc</td></tr><tr><td class="revremark" align="left" colspan="3">Added note recommending versioned symbol names for
+          OpenCL.</td></tr><tr><td align="left">Revision 4.0</td><td align="left">2012-08-06</td><td align="left">msc</td></tr><tr><td class="revremark" align="left" colspan="3">Fourth Edition. Add info. about OpenGL 4.x and OpenGL ES
+          3.x.</td></tr><tr><td align="left">Revision 3.0</td><td align="left">2009-11-26</td><td align="left">msc</td></tr><tr><td class="revremark" align="left" colspan="3">Third Edition. Added info. about OpenGL 3.x &amp;
+          OpenWF.</td></tr><tr><td align="left">Revision 2.0</td><td align="left">2009-03-05</td><td align="left">msc</td></tr><tr><td class="revremark" align="left" colspan="3">Second Edition. Reorganized completely; added info. about
+          additional APIs; added Implementation Notes and Conformance Testing
+          sections.</td></tr><tr><td align="left">Revision 1.1</td><td align="left">2008-01-11</td><td align="left">msc</td></tr><tr><td class="revremark" align="left" colspan="3">Added brief note about OpenKODE extensions.</td></tr><tr><td align="left">Revision 1.0</td><td align="left">2007-12-28</td><td align="left">msc</td></tr><tr><td class="revremark" align="left" colspan="3">First Official Release.</td></tr></table></div></div><div class="appendix" title="C. Acknowledgements"><h2 class="title" style="clear: both"><a name="idm58020289792"></a>C. Acknowledgements</h2><p>Thanks to all the members of the Khronos Group for their input and
+    in particular to the following:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="othercredit"><span class="firstname">Jonathan</span> <span class="surname">Grant</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Petri</span> <span class="surname">Kero</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Jon</span> <span class="surname">Leech</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Ari-Matti</span> <span class="surname">Leppänen</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Robert</span> <span class="surname">Palmer</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Acorn</span> <span class="surname">Pooley</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Jani</span> <span class="surname">Vaarala</span></span></td></tr><tr><td><span class="othercredit"><span class="firstname">Hans-Martin</span> <span class="surname">Will</span></span></td></tr></table></div></div></body></html>
