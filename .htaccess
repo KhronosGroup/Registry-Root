@@ -66,6 +66,8 @@ RewriteRule ^vx/(.*)$ https://www.khronos.org/registry/OpenVX/$1 [NE,L,R=301]
 
 RewriteRule ^wf/(.*)$ https://www.khronos.org/registry/OpenWF/$1 [NE,L,R=301]
 
+RewriteRule ^openxr/?(.*)$ https://www.khronos.org/registry/OpenXR/$1 [NE,L,R=301]
+
 # Redirects to keep Google search results happy:  https://www.google.co.uk/search?q=opencl+specification
 
 Redirect 301 /registry/OpenCL/specs/opencl-1.0.29.pdf https://www.khronos.org/registry/OpenCL/
@@ -89,3 +91,4 @@ Redirect 301 /registry/OpenCL/specs/opencl-2.2-extension.pdf https://www.khronos
 Redirect 301 /registry/OpenCL/specs/opencl-2.2.html https://www.khronos.org/registry/OpenCL/specs/2.2/html/OpenCL_API.html
 Redirect 301 /registry/OpenCL/specs/opencl-2.2.pdf https://www.khronos.org/registry/OpenCL/specs/2.2/pdf/OpenCL_API.pdf
 
+RewriteRule ^OpenCL/sdk/latest/(.*)$ https://www.khronos.org/registry/OpenCL/sdk/2.2/$1 [L,NC,R=301]

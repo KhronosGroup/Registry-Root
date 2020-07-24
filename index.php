@@ -39,6 +39,7 @@ include_once("../assets/static_pages/khr_page_top.php");
 <li> <a href="OpenSL-ES/"> OpenSL ES&trade; Registry </a> </li>
 <li> <a href="OpenVG/"> OpenVG&trade; Registry </a> </li>
 <li> <a href="OpenVX/"> OpenVX&trade; Registry </a> </li>
+<li> <a href="OpenXR/"> OpenXR&trade; Registry </a> </li>
 <li> <a href="OpenWF/"> OpenWF Registry </a> </li>
 <li> <a href="SPIR/"> SPIR&trade; Registry </a> </li>
 <li> <a href="spir-v/"> SPIR-V Registry </a> </li>
