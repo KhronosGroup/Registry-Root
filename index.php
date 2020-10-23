@@ -21,10 +21,11 @@ include_once("../assets/static_pages/khr_page_top.php");
     OpenVG / EGL implementations on the same platform. Implementers are
     strongly urged to comply with these guidelines. </p>
 
-<p> The registry is broken down into separate sections for each API.
+<p> The registry is broken down into separate sections for each product.
     These sections include: </p>
 
 <ul>
+<li> <a href="3DCommerce/AssetCreation/"> 3D Commerce Asset Creation Models </a> </li>
 <li> <a href="https://www.khronos.org/collada/wiki/Portal:Extensions_directory">
      COLLADA&trade; Registry </a>
 <li> <a href="DataFormat/"> Data Format Registry </a> </li>
@@ -58,18 +59,24 @@ include_once("../assets/static_pages/khr_page_top.php");
 <h3> <a name="headers"></a>
      Collected Khronos Header Files </h3>
 
-<p> <b> As of March 2017, we are no longer providing a single package
-    containing collected header files. </b> This package was usually long
-    out of date in any event, and the individual APIs publish header files
-    in their respective registry pages, or in github repositories linked
-    from those pages. Normally header files are shipped as part of SDK
-    and/or driver packages provided by operating system and/or hardware
-    vendors. </p>
+<p> <b> Khronos APIs publish header files in their respective registry pages
+    and/or in github repositories linked from those pages. Header files are
+    often shipped as part of packages provided by operating system vendors,
+    hardware vendors, or SDK suppliers. </p>
 
 <p> Note that if you download individual header files, several of the
     APIs depend on the shared header file
     <a href="EGL/api/KHR/khrplatform.h"> &lt;KHR/khrplatform.h&gt; </a>,
     which defines common datatypes and calling convention macros. </p>
+
+<h3> <a name="feedback"></a> <b>Providing Feedback on the Registry</b> </h3>
+
+<p> Khronos welcomes comments and bug reports. To provide feedback on
+    individual API registries, see the index pages for those APIs. To
+    provide feedback on the top-level registry (which is just this index
+    page and the Khronos Implementer's Guide), file an issue in the <a
+    href="https://github.com/KhronosGroup/Registry-Root/issues">
+    Registry-Root </a> Github project. </p>
 
 <?php include_once("../assets/static_pages/khr_page_bottom.php"); ?>
 </body>
