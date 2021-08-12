@@ -30,6 +30,7 @@ include_once("../assets/static_pages/khr_page_top.php");
      COLLADA&trade; Registry </a>
 <li> <a href="DataFormat/"> Data Format Registry </a> </li>
 <li> <a href="EGL/"> EGL&trade; Registry </a> </li>
+<li> <a href="KTX/"> KTX&trade; Registry </a> </li>
 <li> <a href="NNEF/"> NNEF&trade; Registry </a> </li>
 <li> <a href="OpenCL/"> OpenCL&trade; Registry </a> </li>
 <li> <a href="OpenGL/"> Combined OpenGL&reg;, OpenGL ES, and OpenGL SC Registry </a> </li> </li>
