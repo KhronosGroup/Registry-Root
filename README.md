@@ -15,6 +15,6 @@ This general pattern is followed with a couple of exceptions
 
 This repository rarely require updates. Its contents are little more than
 the toplevel registry index page, the Khronos Implementer's Guide, and the
-.htaccess redirects.
+redirects.
 If it does need updates, they can be proposed at pull requests to the
 www.github.com/KhronosGroup/Registry-Root repository.
