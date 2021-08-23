@@ -40,35 +40,35 @@ RewriteRule ^typedarray/(.*)$ http://www.ecma-international.org/ecma-262/6.0/#se
 
 # Still todo: GL, GLES, GLSC -> khronos.org/registry/OpenGL w/*lots* of redirects for individual files
 
-RewriteRule ^cl/(.*)$ https://www.khronos.org/registry/OpenCL/$1 [NE,L,R=301]
+RewriteRule ^cl/?(.*)$ https://www.khronos.org/registry/OpenCL/$1 [NE,L,R=301]
 
-RewriteRule ^dataformat/(.*)$ https://www.khronos.org/registry/DataFormat/$1 [NE,L,R=301]
+RewriteRule ^dataformat/?(.*)$ https://www.khronos.org/registry/DataFormat/$1 [NE,L,R=301]
 
-RewriteRule ^egl/(.*)$ https://www.khronos.org/registry/EGL/$1 [NE,L,R=301]
+RewriteRule ^egl/?(.*)$ https://www.khronos.org/registry/EGL/$1 [NE,L,R=301]
 
-RewriteRule ^kode/(.*)$ https://www.khronos.org/registry/OpenKODE/$1 [NE,L,R=301]
+RewriteRule ^kode/?(.*)$ https://www.khronos.org/registry/OpenKODE/$1 [NE,L,R=301]
 
-RewriteRule ^omxal/(.*)$ https://www.khronos.org/registry/OpenMAX-AL/$1 [NE,L,R=301]
+RewriteRule ^omxal/?(.*)$ https://www.khronos.org/registry/OpenMAX-AL/$1 [NE,L,R=301]
 
-RewriteRule ^omxdl/(.*)$ https://www.khronos.org/registry/OpenMAX-DL/$1 [NE,L,R=301]
+RewriteRule ^omxdl/?(.*)$ https://www.khronos.org/registry/OpenMAX-DL/$1 [NE,L,R=301]
 
-RewriteRule ^omxil/(.*)$ https://www.khronos.org/registry/OpenMAX-IL/$1 [NE,L,R=301]
+RewriteRule ^omxil/?(.*)$ https://www.khronos.org/registry/OpenMAX-IL/$1 [NE,L,R=301]
 
-RewriteRule ^sles/(.*)$ https://www.khronos.org/registry/OpenSL-ES/$1 [NE,L,R=301]
+RewriteRule ^sles/?(.*)$ https://www.khronos.org/registry/OpenSL-ES/$1 [NE,L,R=301]
 
-RewriteRule ^spir/(.*)$ https://www.khronos.org/registry/SPIR/$1 [NE,L,R=301]
+RewriteRule ^spir/?(.*)$ https://www.khronos.org/registry/SPIR/$1 [NE,L,R=301]
 
-RewriteRule ^spir-v/(.*)$ https://www.khronos.org/registry/SPIR-V/$1 [NE,L,R=301]
+RewriteRule ^spir-v/?(.*)$ https://www.khronos.org/registry/SPIR-V/$1 [NE,L,R=301]
 
-RewriteRule ^SPIRV-Registry/(.*)$ https://github.com/KhronosGroup/SPIRV-Registry/$1 [NE,L,R=301]
+RewriteRule ^SPIRV-Registry/?(.*)$ https://github.com/KhronosGroup/SPIRV-Registry/$1 [NE,L,R=301]
 
-RewriteRule ^sycl/(.*)$ https://www.khronos.org/registry/SYCL/$1 [NE,L,R=301]
+RewriteRule ^sycl/?(.*)$ https://www.khronos.org/registry/SYCL/$1 [NE,L,R=301]
 
-RewriteRule ^vg/(.*)$ https://www.khronos.org/registry/OpenVG/$1 [NE,L,R=301]
+RewriteRule ^vg/?(.*)$ https://www.khronos.org/registry/OpenVG/$1 [NE,L,R=301]
 
-RewriteRule ^vx/(.*)$ https://www.khronos.org/registry/OpenVX/$1 [NE,L,R=301]
+RewriteRule ^vx/?(.*)$ https://www.khronos.org/registry/OpenVX/$1 [NE,L,R=301]
 
-RewriteRule ^wf/(.*)$ https://www.khronos.org/registry/OpenWF/$1 [NE,L,R=301]
+RewriteRule ^wf/?(.*)$ https://www.khronos.org/registry/OpenWF/$1 [NE,L,R=301]
 
 RewriteRule ^openxr/?(.*)$ https://www.khronos.org/registry/OpenXR/$1 [NE,L,R=301]
 
