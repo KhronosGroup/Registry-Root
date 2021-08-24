@@ -56,9 +56,9 @@ RewriteRule ^omxil/?(.*)$ https://www.khronos.org/registry/OpenMAX-IL/$1 [NE,L,R
 
 RewriteRule ^sles/?(.*)$ https://www.khronos.org/registry/OpenSL-ES/$1 [NE,L,R=301]
 
-RewriteRule ^spir/?(.*)$ https://www.khronos.org/registry/SPIR/$1 [NE,L,R=301]
-
 RewriteRule ^spir-v/?(.*)$ https://www.khronos.org/registry/SPIR-V/$1 [NE,L,R=301]
+
+RewriteRule ^spir/?(.*)$ https://www.khronos.org/registry/SPIR/$1 [NE,L,R=301]
 
 RewriteRule ^SPIRV-Registry/?(.*)$ https://github.com/KhronosGroup/SPIRV-Registry/$1 [NE,L,R=301]
 
