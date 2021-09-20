@@ -39,6 +39,11 @@ RewriteRule ^typedarray/(.*)$ http://www.ecma-international.org/ecma-262/6.0/#se
 # Rewrite from old SVN backing store paths to new Github repo backing store
 
 # Still todo: GL, GLES, GLSC -> khronos.org/registry/OpenGL w/*lots* of redirects for individual files
+# Trial a patch to redirect the above
+RewriteRule ^gl/?$ https://www.khronos.org/registry/OpenGL/index.php [L,R=301]
+RewriteRule ^gles/?$ https://www.khronos.org/registry/OpenGL/index_es.php [L,R=301]
+RewriteRule ^glsc/?$ https://www.khronos.org/registry/OpenGL/index_sc.php [L,R=301]
+RewriteRule ^(gl|gles|glsc)/(.*)$ https://www.khronos.org/registry/OpenGL/$2 [L,R=301]
 
 RewriteRule ^cl/?(.*)$ https://www.khronos.org/registry/OpenCL/$1 [NE,L,R=301]
 
