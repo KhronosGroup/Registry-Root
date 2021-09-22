@@ -101,3 +101,7 @@ Redirect 301 /registry/OpenCL/specs/opencl-2.2.html https://www.khronos.org/regi
 Redirect 301 /registry/OpenCL/specs/opencl-2.2.pdf https://www.khronos.org/registry/OpenCL/specs/2.2/pdf/OpenCL_API.pdf
 
 RewriteRule ^OpenCL/sdk/latest/(.*)$ https://www.khronos.org/registry/OpenCL/sdk/2.2/$1 [L,NC,R=301]
+
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "base-uri 'self'; form-action 'self' cdn.khronos.org; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com www.googletagmanager.com www.google-analytics.com"
+</IfModule>
