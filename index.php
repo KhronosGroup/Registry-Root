@@ -26,10 +26,12 @@ include_once("../assets/static_pages/khr_page_top.php");
 
 <ul>
 <li> <a href="3DCommerce/AssetCreation/"> 3D Commerce Asset Creation Models </a> </li>
+<li> <a href="ANARI/"> ANARI&trade; Registry </a> </li>
 <li> <a href="https://www.khronos.org/collada/wiki/Portal:Extensions_directory">
      COLLADA&trade; Registry </a>
 <li> <a href="DataFormat/"> Data Format Registry </a> </li>
 <li> <a href="EGL/"> EGL&trade; Registry </a> </li>
+<li> <a href="glTF/"> glTF&trade; Registry </a> </li>
 <li> <a href="KTX/"> KTX&trade; Registry </a> </li>
 <li> <a href="NNEF/"> NNEF&trade; Registry </a> </li>
 <li> <a href="OpenCL/"> OpenCL&trade; Registry </a> </li>
