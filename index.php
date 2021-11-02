@@ -59,10 +59,10 @@ include_once("../assets/static_pages/khr_page_top.php");
 <li> <a href="webcl/"> WebCL&trade; Registry </a>
 </ul>
 
-<h3> <a name="headers"></a>
+<h3 id="headers">
      Collected Khronos Header Files </h3>
 
-<p> <b> Khronos APIs publish header files in their respective registry pages
+<p> Khronos APIs publish header files in their respective registry pages
     and/or in github repositories linked from those pages. Header files are
     often shipped as part of packages provided by operating system vendors,
     hardware vendors, or SDK suppliers. </p>
@@ -72,7 +72,7 @@ include_once("../assets/static_pages/khr_page_top.php");
     <a href="EGL/api/KHR/khrplatform.h"> &lt;KHR/khrplatform.h&gt; </a>,
     which defines common datatypes and calling convention macros. </p>
 
-<h3> <a name="feedback"></a> <b>Providing Feedback on the Registry</b> </h3>
+<h3 id="feedback"> <b>Providing Feedback on the Registry</b> </h3>
 
 <p> Khronos welcomes comments and bug reports. To provide feedback on
     individual API registries, see the index pages for those APIs. To
