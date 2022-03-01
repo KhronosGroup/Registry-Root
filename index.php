@@ -26,10 +26,12 @@ include_once("../assets/static_pages/khr_page_top.php");
 
 <ul>
 <li> <a href="3DCommerce/AssetCreation/"> 3D Commerce Asset Creation Models </a> </li>
+<li> <a href="ANARI/"> ANARI&trade; Registry </a> </li>
 <li> <a href="https://www.khronos.org/collada/wiki/Portal:Extensions_directory">
      COLLADA&trade; Registry </a>
 <li> <a href="DataFormat/"> Data Format Registry </a> </li>
 <li> <a href="EGL/"> EGL&trade; Registry </a> </li>
+<li> <a href="glTF/"> glTF&trade; Registry </a> </li>
 <li> <a href="KTX/"> KTX&trade; Registry </a> </li>
 <li> <a href="NNEF/"> NNEF&trade; Registry </a> </li>
 <li> <a href="OpenCL/"> OpenCL&trade; Registry </a> </li>
@@ -58,10 +60,10 @@ include_once("../assets/static_pages/khr_page_top.php");
 <li> <a href="webcl/"> WebCL&trade; Registry </a>
 </ul>
 
-<h3> <a name="headers"></a>
+<h3 id="headers">
      Collected Khronos Header Files </h3>
 
-<p> <b> Khronos APIs publish header files in their respective registry pages
+<p> Khronos APIs publish header files in their respective registry pages
     and/or in github repositories linked from those pages. Header files are
     often shipped as part of packages provided by operating system vendors,
     hardware vendors, or SDK suppliers. </p>
@@ -71,7 +73,7 @@ include_once("../assets/static_pages/khr_page_top.php");
     <a href="EGL/api/KHR/khrplatform.h"> &lt;KHR/khrplatform.h&gt; </a>,
     which defines common datatypes and calling convention macros. </p>
 
-<h3> <a name="feedback"></a> <b>Providing Feedback on the Registry</b> </h3>
+<h3 id="feedback"> <b>Providing Feedback on the Registry</b> </h3>
 
 <p> Khronos welcomes comments and bug reports. To provide feedback on
     individual API registries, see the index pages for those APIs. To
