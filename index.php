@@ -47,6 +47,7 @@ include_once("../assets/static_pages/khr_page_top.php");
 <li> <a href="spir-v/"> SPIR-V Registry </a> </li>
 <li> <a href="SYCL/"> SYCL&trade; Registry </a> </li>
 <li> <a href="vulkan/"> Vulkan&reg; Registry </a> </li>
+<li> <a href="vulkansc/"> Vulkan&reg; SC Registry </a> </li>
 <li> <p> <a href="webgl/"> WebGL&trade; Registry </a>
      (<b>Note:</b> the related TypedArray Registry defined functionality
      that is now part of the <a
