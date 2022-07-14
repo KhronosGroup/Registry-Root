@@ -27,7 +27,7 @@ RewriteEngine on
 # Ensure we use www.
 RewriteCond %{HTTP_HOST} ^khronos.org
 RewriteCond %{HTTPS} ^on
-RewriteRule ^(.*)$ https://www.khronos.org/registry/$1 [R=permanent,L]
+RewriteRule ^(.*)$ https://registry.khronos.org/$1 [R=permanent,L]
 
 # Avoid redirect loops
 RewriteCond %{ENV:REDIRECT_STATUS} 200
@@ -40,71 +40,72 @@ RewriteRule ^typedarray/(.*)$ http://www.ecma-international.org/ecma-262/6.0/#se
 
 # Still todo: GL, GLES, GLSC -> khronos.org/registry/OpenGL w/*lots* of redirects for individual files
 # Trial a patch to redirect the above
-RewriteRule ^gl/?$ https://www.khronos.org/registry/OpenGL/index.php [L,R=301]
-RewriteRule ^gles/?$ https://www.khronos.org/registry/OpenGL/index_es.php [L,R=301]
-RewriteRule ^glsc/?$ https://www.khronos.org/registry/OpenGL/index_sc.php [L,R=301]
-RewriteRule ^(gl|gles|glsc)/(.*)$ https://www.khronos.org/registry/OpenGL/$2 [L,R=301]
+RewriteRule ^gl/?$ https://registry.khronos.org/OpenGL/index.php [L,R=301]
+RewriteRule ^gles/?$ https://registry.khronos.org/OpenGL/index_es.php [L,R=301]
+RewriteRule ^glsc/?$ https://registry.khronos.org/OpenGL/index_sc.php [L,R=301]
+RewriteRule ^(gl|gles|glsc)/(.*)$ https://registry.khronos.org/OpenGL/$2 [L,R=301]
+RewriteRule ^vulkansc(.*)$ https://registry.khronos.org/VulkanSC$1 [L,R=301]
 
-RewriteRule ^cl/?(.*)$ https://www.khronos.org/registry/OpenCL/$1 [NE,L,R=301]
+RewriteRule ^cl/?(.*)$ https://registry.khronos.org/OpenCL/$1 [NE,L,R=301]
 
-RewriteRule ^dataformat/?(.*)$ https://www.khronos.org/registry/DataFormat/$1 [NE,L,R=301]
+RewriteRule ^dataformat/?(.*)$ https://registry.khronos.org/DataFormat/$1 [NE,L,R=301]
 
-RewriteRule ^egl/?(.*)$ https://www.khronos.org/registry/EGL/$1 [NE,L,R=301]
+RewriteRule ^egl/?(.*)$ https://registry.khronos.org/EGL/$1 [NE,L,R=301]
 
-RewriteRule ^kode/?(.*)$ https://www.khronos.org/registry/OpenKODE/$1 [NE,L,R=301]
+RewriteRule ^kode/?(.*)$ https://registry.khronos.org/OpenKODE/$1 [NE,L,R=301]
 
-RewriteRule ^omxal/?(.*)$ https://www.khronos.org/registry/OpenMAX-AL/$1 [NE,L,R=301]
+RewriteRule ^omxal/?(.*)$ https://registry.khronos.org/OpenMAX-AL/$1 [NE,L,R=301]
 
-RewriteRule ^omxdl/?(.*)$ https://www.khronos.org/registry/OpenMAX-DL/$1 [NE,L,R=301]
+RewriteRule ^omxdl/?(.*)$ https://registry.khronos.org/OpenMAX-DL/$1 [NE,L,R=301]
 
-RewriteRule ^omxil/?(.*)$ https://www.khronos.org/registry/OpenMAX-IL/$1 [NE,L,R=301]
+RewriteRule ^omxil/?(.*)$ https://registry.khronos.org/OpenMAX-IL/$1 [NE,L,R=301]
 
-RewriteRule ^sles/?(.*)$ https://www.khronos.org/registry/OpenSL-ES/$1 [NE,L,R=301]
+RewriteRule ^sles/?(.*)$ https://registry.khronos.org/OpenSL-ES/$1 [NE,L,R=301]
 
-RewriteRule ^spir-v/?(.*)$ https://www.khronos.org/registry/SPIR-V/$1 [NE,L,R=301]
+RewriteRule ^spir-v/?(.*)$ https://registry.khronos.org/SPIR-V/$1 [NE,L,R=301]
 
-RewriteRule ^spir/?(.*)$ https://www.khronos.org/registry/SPIR/$1 [NE,L,R=301]
+RewriteRule ^spir/?(.*)$ https://registry.khronos.org/SPIR/$1 [NE,L,R=301]
 
 RewriteRule ^SPIRV-Registry/?(.*)$ https://github.com/KhronosGroup/SPIRV-Registry/$1 [NE,L,R=301]
 
-RewriteRule ^sycl/?(.*)$ https://www.khronos.org/registry/SYCL/$1 [NE,L,R=301]
+RewriteRule ^sycl/?(.*)$ https://registry.khronos.org/SYCL/$1 [NE,L,R=301]
 
-RewriteRule ^vg/?(.*)$ https://www.khronos.org/registry/OpenVG/$1 [NE,L,R=301]
+RewriteRule ^vg/?(.*)$ https://registry.khronos.org/OpenVG/$1 [NE,L,R=301]
 
-RewriteRule ^vx/?(.*)$ https://www.khronos.org/registry/OpenVX/$1 [NE,L,R=301]
+RewriteRule ^vx/?(.*)$ https://registry.khronos.org/OpenVX/$1 [NE,L,R=301]
 
-RewriteRule ^wf/?(.*)$ https://www.khronos.org/registry/OpenWF/$1 [NE,L,R=301]
+RewriteRule ^wf/?(.*)$ https://registry.khronos.org/OpenWF/$1 [NE,L,R=301]
 
-RewriteRule ^openxr/?(.*)$ https://www.khronos.org/registry/OpenXR/$1 [NE,L,R=301]
+RewriteRule ^openxr/?(.*)$ https://registry.khronos.org/OpenXR/$1 [NE,L,R=301]
 
 # Redirects to keep Google search results happy:  https://www.google.co.uk/search?q=opencl+specification
 
-Redirect 301 /registry/OpenCL/specs/opencl-1.0.29.pdf https://www.khronos.org/registry/OpenCL/
+Redirect 301 /OpenCL/specs/opencl-1.0.29.pdf https://registry.khronos.org/OpenCL/
 
 # Redirect specs/misc extensions
-Redirect 301 /registry/vulkan/specs/misc/GL_KHR_vulkan_glsl.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/khr/GL_KHR_vulkan_glsl.txt
-Redirect 301 /registry/vulkan/specs/misc/GL_EXT_control_flow_attributes.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_control_flow_attributes.txt
-Redirect 301 /registry/vulkan/specs/misc/GL_EXT_device_group.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_device_group.txt
-Redirect 301 /registry/vulkan/specs/misc/GL_EXT_multiview.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_multiview.txt
-Redirect 301 /registry/vulkan/specs/misc/GL_AMD_shader_fragment_mask.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/amd/GL_AMD_shader_fragment_mask.txt
-Redirect 301 /registry/vulkan/specs/misc/GL_NVX_multiview_per_view_attributes.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt
-Redirect 301 /registry/vulkan/specs/misc https://github.com/KhronosGroup/GLSL/tree/master/extensions
+Redirect 301 /vulkan/specs/misc/GL_KHR_vulkan_glsl.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/khr/GL_KHR_vulkan_glsl.txt
+Redirect 301 /vulkan/specs/misc/GL_EXT_control_flow_attributes.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_control_flow_attributes.txt
+Redirect 301 /vulkan/specs/misc/GL_EXT_device_group.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_device_group.txt
+Redirect 301 /vulkan/specs/misc/GL_EXT_multiview.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_multiview.txt
+Redirect 301 /vulkan/specs/misc/GL_AMD_shader_fragment_mask.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/amd/GL_AMD_shader_fragment_mask.txt
+Redirect 301 /vulkan/specs/misc/GL_NVX_multiview_per_view_attributes.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt
+Redirect 301 /vulkan/specs/misc https://github.com/KhronosGroup/GLSL/tree/master/extensions
 
 # Redirect specs/opencl-2.2 to new structure - 2018-05-14
-Redirect 301 /registry/OpenCL/specs/opencl-2.2-cplusplus.html https://www.khronos.org/registry/OpenCL/specs/2.2/html/OpenCL_Cxx.html
-Redirect 301 /registry/OpenCL/specs/opencl-2.2-cplusplus.pdf https://www.khronos.org/registry/OpenCL/specs/2.2/pdf/OpenCL_Cxx.pdf
-Redirect 301 /registry/OpenCL/specs/opencl-2.2-environment.html https://www.khronos.org/registry/OpenCL/specs/2.2/html/OpenCL_Env.html
-Redirect 301 /registry/OpenCL/specs/opencl-2.2-environment.pdf https://www.khronos.org/registry/OpenCL/specs/2.2/pdf/OpenCL_Env.pdf
-Redirect 301 /registry/OpenCL/specs/opencl-2.2-extension.html https://www.khronos.org/registry/OpenCL/specs/2.2/html/OpenCL_Ext.html
-Redirect 301 /registry/OpenCL/specs/opencl-2.2-extension.pdf https://www.khronos.org/registry/OpenCL/specs/2.2/pdf/OpenCL_Ext.pdf
-Redirect 301 /registry/OpenCL/specs/opencl-2.2.html https://www.khronos.org/registry/OpenCL/specs/2.2/html/OpenCL_API.html
-Redirect 301 /registry/OpenCL/specs/opencl-2.2.pdf https://www.khronos.org/registry/OpenCL/specs/2.2/pdf/OpenCL_API.pdf
+Redirect 301 /OpenCL/specs/opencl-2.2-cplusplus.html https://registry.khronos.org/OpenCL/specs/2.2/html/OpenCL_Cxx.html
+Redirect 301 /OpenCL/specs/opencl-2.2-cplusplus.pdf https://registry.khronos.org/OpenCL/specs/2.2/pdf/OpenCL_Cxx.pdf
+Redirect 301 /OpenCL/specs/opencl-2.2-environment.html https://registry.khronos.org/OpenCL/specs/2.2/html/OpenCL_Env.html
+Redirect 301 /OpenCL/specs/opencl-2.2-environment.pdf https://registry.khronos.org/OpenCL/specs/2.2/pdf/OpenCL_Env.pdf
+Redirect 301 /OpenCL/specs/opencl-2.2-extension.html https://registry.khronos.org/OpenCL/specs/2.2/html/OpenCL_Ext.html
+Redirect 301 /OpenCL/specs/opencl-2.2-extension.pdf https://registry.khronos.org/OpenCL/specs/2.2/pdf/OpenCL_Ext.pdf
+Redirect 301 /OpenCL/specs/opencl-2.2.html https://registry.khronos.org/OpenCL/specs/2.2/html/OpenCL_API.html
+Redirect 301 /OpenCL/specs/opencl-2.2.pdf https://registry.khronos.org/OpenCL/specs/2.2/pdf/OpenCL_API.pdf
 
-RewriteRule ^OpenCL/sdk/latest/(.*)$ https://www.khronos.org/registry/OpenCL/sdk/3.0/$1 [L,NC,R=301]
+RewriteRule ^OpenCL/sdk/latest/(.*)$ https://registry.khronos.org/OpenCL/sdk/3.0/$1 [L,NC,R=301]
 
 # This causes the OpenCL extensions HTML to use the same katex copy used for
 # the specs, until we have a single Khronos-wide version.
-RewriteRule ^OpenCL/extensions/katex/?(.*)$ https://www.khronos.org/registry/OpenCL/specs/3.0-unified/katex/$1 [L,NC,R=301]
+RewriteRule ^OpenCL/extensions/katex/?(.*)$ https://registry.khronos.org/OpenCL/specs/3.0-unified/katex/$1 [L,NC,R=301]
 
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "base-uri 'self'; form-action 'self' cdn.khronos.org; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com www.googletagmanager.com www.google-analytics.com"
