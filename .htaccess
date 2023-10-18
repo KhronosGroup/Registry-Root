@@ -91,7 +91,6 @@ Redirect 301 /vulkan/specs/misc/GL_EXT_multiview.txt https://github.com/KhronosG
 Redirect 301 /vulkan/specs/misc/GL_AMD_shader_fragment_mask.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/amd/GL_AMD_shader_fragment_mask.txt
 Redirect 301 /vulkan/specs/misc/GL_NVX_multiview_per_view_attributes.txt https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt
 Redirect 301 /vulkan/specs/misc https://github.com/KhronosGroup/GLSL/tree/master/extensions
-RewriteRule ^vulkan/site/?(.*)$ https://docs.vulkan.org/$1 [NE,L,R=301]
 
 # Redirect specs/opencl-2.2 to new structure - 2018-05-14
 Redirect 301 /OpenCL/specs/opencl-2.2-cplusplus.html https://registry.khronos.org/OpenCL/specs/2.2/html/OpenCL_Cxx.html
