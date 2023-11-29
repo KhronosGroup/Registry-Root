@@ -103,6 +103,7 @@ Redirect 301 /OpenCL/specs/opencl-2.2.html https://registry.khronos.org/OpenCL/s
 Redirect 301 /OpenCL/specs/opencl-2.2.pdf https://registry.khronos.org/OpenCL/specs/2.2/pdf/OpenCL_API.pdf
 
 RewriteRule ^OpenCL/sdk/latest/(.*)$ https://registry.khronos.org/OpenCL/sdk/3.0/$1 [L,NC,R=301]
+RewriteRule ^OpenCL/sdk/latest/?$ https://registry.khronos.org/OpenCL/sdk/3.0/docs/man/html/ [L,NC,R=301]
 
 # This causes the OpenCL extensions HTML to use the same katex copy used for
 # the specs, until we have a single Khronos-wide version.
