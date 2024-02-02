@@ -1,23 +1,22 @@
 # .htaccess for khronos.org/registry
 
-Options +Indexes +FollowSymLinks
-IndexOptions FancyIndexing
-IndexOptions VersionSort
-IndexOptions HTMLTable
-IndexOptions FoldersFirst
-IndexOptions IconsAreLinks
-IndexOptions IgnoreCase
-IndexOptions SuppressDescription
-IndexOptions SuppressHTMLPreamble
-IndexOptions XHTML
-IndexOptions IconWidth=16
-IndexOptions IconHeight=16
-IndexOptions NameWidth=*
-IndexOrderDefault Ascending Name
-HeaderName /assets/apache/groups-index-style/header-public.html
-ReadmeName /assets/apache/groups-index-style/footer-public.html
-
-AddIcon /assets/apache/groups-index-style/icons/folder.gif ^^DIRECTORY^^
+# Options +Indexes +FollowSymLinks
+# IndexOptions FancyIndexing
+# IndexOptions VersionSort
+# IndexOptions HTMLTable
+# IndexOptions FoldersFirst
+# IndexOptions IconsAreLinks
+# IndexOptions IgnoreCase
+# IndexOptions SuppressDescription
+# IndexOptions SuppressHTMLPreamble
+# IndexOptions XHTML
+# IndexOptions IconWidth=16
+# IndexOptions IconHeight=16
+# IndexOptions NameWidth=*
+# IndexOrderDefault Ascending Name
+# HeaderName /assets/apache/groups-index-style/header-public.html
+# ReadmeName /assets/apache/groups-index-style/footer-public.html
+# AddIcon /assets/apache/groups-index-style/icons/folder.gif ^^DIRECTORY^^
 
 # The Khronos TypedArray proposal has been folded into ECMAScript 2015.
 # Just redirect everything here to there.
@@ -25,9 +24,9 @@ AddIcon /assets/apache/groups-index-style/icons/folder.gif ^^DIRECTORY^^
 RewriteEngine on
 
 # Ensure we use www.
-RewriteCond %{HTTP_HOST} ^khronos.org
-RewriteCond %{HTTPS} ^on
-RewriteRule ^(.*)$ https://registry.khronos.org/$1 [R=permanent,L]
+# RewriteCond %{HTTP_HOST} ^khronos.org
+# RewriteCond %{HTTPS} ^on
+# RewriteRule ^(.*)$ https://registry.khronos.org/$1 [R=permanent,L]
 
 # Avoid redirect loops
 RewriteCond %{ENV:REDIRECT_STATUS} 200
