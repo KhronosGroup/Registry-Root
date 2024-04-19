@@ -1,6 +1,6 @@
 # .htaccess for khronos.org/registry
 
-# Options +Indexes +FollowSymLinks
+Options +Indexes +FollowSymLinks
 # IndexOptions FancyIndexing
 # IndexOptions VersionSort
 # IndexOptions HTMLTable
