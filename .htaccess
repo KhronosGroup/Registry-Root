@@ -14,9 +14,9 @@ Options +Indexes +FollowSymLinks
 # IndexOptions IconHeight=16
 # IndexOptions NameWidth=*
 # IndexOrderDefault Ascending Name
-# HeaderName /assets/apache/groups-index-style/header-public.html
-# ReadmeName /assets/apache/groups-index-style/footer-public.html
-# AddIcon /assets/apache/groups-index-style/icons/folder.gif ^^DIRECTORY^^
+HeaderName /assets/apache/groups-index-style/header-public.html
+ReadmeName /assets/apache/groups-index-style/footer-public.html
+AddIcon /assets/apache/groups-index-style/icons/folder.gif ^^DIRECTORY^^
 
 # The Khronos TypedArray proposal has been folded into ECMAScript 2015.
 # Just redirect everything here to there.
