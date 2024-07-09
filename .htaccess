@@ -113,6 +113,9 @@ Redirect 301 /KTX/specs/ktx_frag.html /KTX/specs/2.0/ktx-frag.html
 Redirect 301 /KTX/specs/1.0/ktxspec_v1.html /KTX/specs/1.0/ktxspec.v1.html
 Redirect 301 /KTX/specs/2.0/ktxspec_v2.html /KTX/specs/2.0/ktxspec.v2.html
 
+# Block QCOM Extension QCOM_tiled_rendering.txt
+Redirect 404 /OpenGL/extensions/QCOM/QCOM_tiled_rendering.txt
+
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "base-uri 'self'; form-action 'self' cdn.khronos.org; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com www.googletagmanager.com www.google-analytics.com"
 </IfModule>
