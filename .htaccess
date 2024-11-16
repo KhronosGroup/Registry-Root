@@ -23,10 +23,8 @@ AddIcon /assets/apache/groups-index-style/icons/folder.gif ^^DIRECTORY^^
 
 RewriteEngine on
 
-# Ensure we use www.
-# RewriteCond %{HTTP_HOST} ^khronos.org
-# RewriteCond %{HTTPS} ^on
-# RewriteRule ^(.*)$ https://registry.khronos.org/$1 [R=permanent,L]
+# PHP files with URL segments after .php are 404
+RewriteRule ^(.+\.php)/ - [R=404,L]
 
 # Avoid redirect loops
 RewriteCond %{ENV:REDIRECT_STATUS} 200
@@ -39,6 +37,7 @@ RewriteRule ^typedarray/(.*)$ http://www.ecma-international.org/ecma-262/6.0/#se
 
 # Still todo: GL, GLES, GLSC -> khronos.org/registry/OpenGL w/*lots* of redirects for individual files
 # Trial a patch to redirect the above
+
 RewriteRule ^gl/?$ https://registry.khronos.org/OpenGL/index.php [L,R=301]
 RewriteRule ^gles/?$ https://registry.khronos.org/OpenGL/index_es.php [L,R=301]
 RewriteRule ^glsc/?$ https://registry.khronos.org/OpenGL/index_sc.php [L,R=301]
@@ -114,5 +113,5 @@ Redirect 301 /KTX/specs/1.0/ktxspec_v1.html /KTX/specs/1.0/ktxspec.v1.html
 Redirect 301 /KTX/specs/2.0/ktxspec_v2.html /KTX/specs/2.0/ktxspec.v2.html
 
 <IfModule mod_headers.c>
-    Header set Content-Security-Policy "base-uri 'self'; form-action 'self' cdn.khronos.org; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com www.googletagmanager.com www.google-analytics.com"
+    Header set Content-Security-Policy "base-uri 'self'; form-action 'self' cdn.khronos.org; worker-src 'self' blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com www.googletagmanager.com www.google-analytics.com"
 </IfModule>
